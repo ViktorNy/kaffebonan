@@ -1,7 +1,7 @@
 import { Card, CardContent, CardMedia, Typography, makeStyles, createStyles, Theme, Button, Grid } from '@material-ui/core'
 import { FC } from 'react'
 import AddIcon from '@material-ui/icons/Add';
-import { Product } from '../pages/StartPage';
+import { Product } from '../data';
 import { Link } from 'react-router-dom';
 
 interface Props {

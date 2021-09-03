@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
+import { Product } from '../data'
 
-export const ProductPage = () => {
-    return <h1>Product Page</h1>
+export const ProductPage: FC<Product> = () => {
+    return (
+        <div>
+
+        </div>
+    )
 }
