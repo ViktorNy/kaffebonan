@@ -4,8 +4,9 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import React, { FC } from 'react';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Grid from '@material-ui/core/Grid';
-import AddIcon from '@material-ui/icons/Add';
 import { HeaderBar } from '../components/Header';
+import { ProductCard } from '../components/ProductCard';
+
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -53,8 +54,6 @@ const Startpage: FC = () => {
     )
 }
 
-
-
 const ProductGrid: FC = () => {
     const classes = useStyles();
 
@@ -63,19 +62,7 @@ const ProductGrid: FC = () => {
             <Grid container spacing={3} className={`${classes.contentMargin}`}>
                 {productArray.map((product) => (
                     <Grid item xs={'auto'} sm={3}>
-                        <Card className={classes.cardContainerHeight}>
-                            <CardContent>
-                                <CardMedia className={classes.media} image={product.imageUrl} />
-                                <Typography >{product.name}</Typography> 
-                                {/* Låt typography vara kvar tills vidare */}
-                                <div className={`${classes.flex} ${classes.spaceBetween}`}>
-                                    <p>Pris {product.price} kr</p>
-                                    <Button >
-                                        <AddIcon />
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
+                        <ProductCard product={product} />
                     </Grid>
                 ))}
             </Grid>
@@ -83,7 +70,7 @@ const ProductGrid: FC = () => {
     )
 }
 
-interface Product {
+export interface Product {
     id: string;
     name: string;
     info: string;
