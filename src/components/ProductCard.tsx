@@ -1,8 +1,9 @@
-import { Card, CardContent, CardMedia, Typography, makeStyles, createStyles, Theme, Button, Grid } from '@material-ui/core'
-import { FC } from 'react'
+import { Card, CardContent, CardMedia, Typography, makeStyles, createStyles, Theme, Button, Grid } from '@material-ui/core';
+import { FC, useContext } from 'react';
 import { Product } from '../data';
 import { Link } from 'react-router-dom';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import { CartContext } from '../context/CartContext';
 
 interface Props {
     product: Product;
@@ -12,6 +13,8 @@ export const ProductCard: FC<Props> = (props: Props) => {
     const classes = useStyles();
     const url = `/product/${props.product.id}`;
 
+    const { addToCart } = useContext(CartContext);
+
     return (
         <Grid item xs={'auto'} sm={3}>
             <Card className={classes.cardContainerHeight}>
@@ -19,11 +22,12 @@ export const ProductCard: FC<Props> = (props: Props) => {
                     <Link to={url}>
                         <CardMedia className={`${classes.media} ${classes.pointer}`} image={props.product.imageUrl} />
                         <Typography >{props.product.name}</Typography>
-                        {/* Låt typography vara kvar tills vidare */}
                     </Link>
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
                         <p>Pris {props.product.price} kr</p>
-                        <Button>
+                        <Button onClick={() => {
+                            addToCart(props.product)
+                        }}>
                             <AddShoppingCartIcon />
                         </Button>
                     </div>
