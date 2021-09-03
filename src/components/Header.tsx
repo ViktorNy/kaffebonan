@@ -6,7 +6,9 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         title: {
             flexGrow: 1,
-        },
+        }, headerColor: {
+            background: '#8A624A'
+        }
     }));
 
 export const HeaderBar = () => {
@@ -14,7 +16,7 @@ export const HeaderBar = () => {
 
     return (
         <div>
-            <AppBar position="fixed">
+            <AppBar position="fixed" className={classes.headerColor}>
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         Kaffebönan

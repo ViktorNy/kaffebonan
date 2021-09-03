@@ -19,11 +19,11 @@ export const ProductCard: FC<Props> = (props: Props) => {
                     <Link to={url}>
                         <CardMedia className={`${classes.media} ${classes.pointer}`} image={props.product.imageUrl} />
                         <Typography >{props.product.name}</Typography>
+                        {/* Låt typography vara kvar tills vidare */}
                     </Link>
-                    {/* Låt typography vara kvar tills vidare */}
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
                         <p>Pris {props.product.price} kr</p>
-                        <Button >
+                        <Button>
                             <AddIcon />
                         </Button>
                     </div>
