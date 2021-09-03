@@ -21,9 +21,7 @@ const ProductGrid: FC = () => {
         <div className={classes.root + ' ' + classes.contentPadding}>
             <Grid container spacing={3} className={`${classes.contentMargin}`}>
                 {productArray.map((product) => (
-                    <Grid item xs={'auto'} sm={3}>
-                        <ProductCard product={product} />
-                    </Grid>
+                    <ProductCard key={product.id} product={product} />
                 ))}
             </Grid>
         </div>
