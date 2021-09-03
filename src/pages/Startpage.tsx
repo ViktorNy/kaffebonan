@@ -5,6 +5,7 @@ import React, { FC } from 'react';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Grid from '@material-ui/core/Grid';
 import AddIcon from '@material-ui/icons/Add';
+import { HeaderBar } from '../components/Header';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -52,24 +53,7 @@ const Startpage: FC = () => {
     )
 }
 
-const HeaderBar: FC = () => {
-    const classes = useStyles();
 
-    return (
-        <div>
-            <AppBar position="fixed">
-                <Toolbar>
-                    <Typography variant="h6" className={classes.title}>
-                        Kaffebönan
-                    </Typography>
-                    <Button color="inherit">
-                        <ShoppingCartIcon />
-                    </Button>
-                </Toolbar>
-            </AppBar>
-        </div>
-    )
-}
 
 const ProductGrid: FC = () => {
     const classes = useStyles();
