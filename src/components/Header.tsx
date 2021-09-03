@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, Button, createStyles, makeStyles, Theme } from '@material-ui/core';
+import { AppBar, Toolbar, Button, createStyles, makeStyles, Theme } from '@material-ui/core';
 // import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import logo from '../images/headerlogo.png';

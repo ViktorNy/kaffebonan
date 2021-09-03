@@ -9,7 +9,7 @@ interface Props extends RouteComponentProps<{ id: string }> { }
 
 export const ProductPage = (props: Props) => {
 
-    const product = productArray.find((p) => p.id == props.match.params.id)
+    const product = productArray.find((p) => p.id === props.match.params.id)
 
     const classes = useStyles();
 
