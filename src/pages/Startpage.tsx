@@ -5,7 +5,7 @@ import { HeaderBar } from '../components/Header';
 import { ProductCard } from '../components/ProductCard';
 import { productArray } from '../data';
 
-const Startpage = () => {
+const StartPage = () => {
     return (
         <div>
             <HeaderBar />
@@ -41,4 +41,4 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }));
 
-export default Startpage;
+export default StartPage;
