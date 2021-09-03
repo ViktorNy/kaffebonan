@@ -1,6 +1,8 @@
 import { Button, createStyles, makeStyles, Theme } from "@material-ui/core"
 import { Product } from "../data"
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 interface Props {
     product: Product;
@@ -9,12 +11,16 @@ interface Props {
 export const ProductInformation = ({ product }: Props) => {
     const classes = useStyles();
 
+    const { addToCart } = useContext(CartContext);
+
     return (
         <div className={classes.flex + ' ' + classes.columnDirection + ' ' + classes.flexGrowOne + ' ' + classes.textSize + ' ' + classes.textMargin}>
             <h1>{product?.name}</h1>
             <div className={classes.flex + ' ' + classes.spaceBetween}>
                 <h2>{product.price} kr</h2>
-                <Button color="inherit">
+                <Button color="inherit" onClick={() => {
+                    addToCart(product)
+                }}>
                     <AddShoppingCartIcon />
                 </Button>
             </div>

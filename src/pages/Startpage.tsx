@@ -8,10 +8,6 @@ import { CartContext } from '../context/CartContext';
 import { productArray } from '../data';
 
 const StartPage = () => {
-    const { shoppingCart } = useContext(CartContext);
-    
-    console.log(shoppingCart);
-
     return (
         <div>
             <HeaderBar />
