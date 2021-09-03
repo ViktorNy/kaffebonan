@@ -1,8 +1,8 @@
 import { Card, CardContent, CardMedia, Typography, makeStyles, createStyles, Theme, Button, Grid } from '@material-ui/core'
 import { FC } from 'react'
-import AddIcon from '@material-ui/icons/Add';
-import { Product } from '../pages/StartPage';
+import { Product } from '../data';
 import { Link } from 'react-router-dom';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 
 interface Props {
     product: Product;
@@ -19,12 +19,12 @@ export const ProductCard: FC<Props> = (props: Props) => {
                     <Link to={url}>
                         <CardMedia className={`${classes.media} ${classes.pointer}`} image={props.product.imageUrl} />
                         <Typography >{props.product.name}</Typography>
+                        {/* Låt typography vara kvar tills vidare */}
                     </Link>
-                    {/* Låt typography vara kvar tills vidare */}
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
                         <p>Pris {props.product.price} kr</p>
-                        <Button >
-                            <AddIcon />
+                        <Button>
+                            <AddShoppingCartIcon />
                         </Button>
                     </div>
                 </CardContent>
