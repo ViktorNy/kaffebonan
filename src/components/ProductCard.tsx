@@ -1,8 +1,8 @@
 import { Card, CardContent, CardMedia, Typography, makeStyles, createStyles, Theme, Button, Grid } from '@material-ui/core'
 import { FC } from 'react'
-import AddIcon from '@material-ui/icons/Add';
 import { Product } from '../data';
 import { Link } from 'react-router-dom';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 
 interface Props {
     product: Product;
@@ -24,7 +24,7 @@ export const ProductCard: FC<Props> = (props: Props) => {
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
                         <p>Pris {props.product.price} kr</p>
                         <Button>
-                            <AddIcon />
+                            <AddShoppingCartIcon />
                         </Button>
                     </div>
                 </CardContent>
