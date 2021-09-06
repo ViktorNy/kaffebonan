@@ -47,16 +47,12 @@ export const CheckOutTable = () => {
             </TableRow>
         ))}
         <TableRow>
-            <TableCell rowSpan={4}>
-                hej
-            </TableCell>
-            <TableCell>
-
+            <TableCell colSpan={2}/>
+           
+            <TableCell className={classes.TableStyle}>
+                Total Price
             </TableCell>
             <TableCell >
-                Total
-            </TableCell>
-            <TableCell>
                 {totalPrice}
             </TableCell>
         </TableRow>
