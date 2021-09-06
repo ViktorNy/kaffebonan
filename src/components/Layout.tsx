@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router'
-import { CheckoutPage } from '../pages/CheckoutPage'
-import { ProductPage } from '../pages/ProductPage'
-import StartPage from '../pages/StartPage'
+import { CheckoutPage } from '../pages/CheckoutPage1'
+import { ProductPage } from '../pages/ProductPage1'
+import StartPage from '../pages/StartPage1'
 import { HeaderBar } from './Header'
 
 export const Layout = () => {
