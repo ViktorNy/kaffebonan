@@ -1,7 +1,7 @@
 import { createContext, FC, useState } from "react";
 import { Product } from "../data";
 
-interface ShoppingItem {
+export interface ShoppingItem {
     product: Product;
     amount: number;
 }

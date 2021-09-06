@@ -1,41 +1,77 @@
-import { CSSProperties, useContext } from 'react';
-import { CartContext } from '../context/CartContext';
+import { createStyles, makeStyles, Table, TableBody, TableCell, TableHead, TableRow, Theme } from '@material-ui/core';
+import { useContext } from 'react';
+import { CartContext, ShoppingItem } from '../context/CartContext';
+
+const AddTotal = (shoppingCart: ShoppingItem[])  => {
+    let totalPrice = 0;
+    shoppingCart.map((item) =>
+       totalPrice += item.product.price * item.amount
+    )
+    return totalPrice   
+}
 
 export const CheckOutTable = () => {
     const {shoppingCart} = useContext(CartContext);
-    console.log(shoppingCart);
+    const totalPrice = AddTotal(shoppingCart);
+    
+    const classes = useStyles();
+    
+    
+    
 
     return (
-        <table style={rootStyle}>
-        <thead>
-        <tr>
-            <th>Product Name</th>
-            <th>Unit price</th>
-            <th>Amount</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
+        <Table className={classes.MainStyle}>
+        <TableHead>
+        <TableRow>
+            <TableCell className={classes.TableStyle}>Product Name</TableCell>
+            <TableCell className={classes.TableStyle}>Unit price</TableCell>
+            <TableCell className={classes.TableStyle}>Amount</TableCell>
+            <TableCell className={classes.TableStyle}>Total</TableCell>
+        </TableRow>
+    </TableHead>
+    <TableBody>
         {shoppingCart.map((shoppingItem) => (
-            <tr>
-                <td>
+            <TableRow>
+                <TableCell>
                     {shoppingItem.product.name}
-                </td>
-                <td>
+                </TableCell>
+                <TableCell>
                     {shoppingItem.product.price}
-                </td>
-                <td>
+                </TableCell>
+                <TableCell>
                     {shoppingItem.amount}
-                </td>
-                <td>
+                </TableCell>
+                <TableCell>
                     {shoppingItem.amount * shoppingItem.product.price}
-                </td>
-            </tr>
+                </TableCell>
+            </TableRow>
         ))}
-    </tbody>
-    </table>) 
+        <TableRow>
+            <TableCell rowSpan={4}>
+                hej
+            </TableCell>
+            <TableCell>
+
+            </TableCell>
+            <TableCell >
+                Total
+            </TableCell>
+            <TableCell>
+                {totalPrice}
+            </TableCell>
+        </TableRow>
+    </TableBody>
+    </Table>
+    ) 
 }
 
-const rootStyle: CSSProperties = {
-    marginTop: '5rem'
-}
+
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        MainStyle: {
+            marginTop: '4rem'
+        }, TableStyle: {
+            fontWeight: 'bold'
+        },
+    }));
