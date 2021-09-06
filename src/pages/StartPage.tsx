@@ -9,9 +9,9 @@ import { productArray } from '../data';
 
 
 const StartPage = () => {
-    const shoppingCart = useContext(CartContext);
-    
+    const {shoppingCart} = useContext(CartContext);
     console.log(shoppingCart);
+
     
     return (
         <div>

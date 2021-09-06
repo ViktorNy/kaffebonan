@@ -1,6 +1,7 @@
 import { AppBar, Toolbar, Button, createStyles, makeStyles, Theme } from '@material-ui/core';
 // import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Link } from 'react-router-dom';
 import logo from '../images/headerlogo.png';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,10 +25,12 @@ export const HeaderBar = () => {
             <AppBar position="fixed" className={classes.headerColor}>
                 <Toolbar>
                     <div className={`${classes.title}`}>
-                        <img src={logo} alt='' className={`${classes.logoStyle}`} />
+                        <Link to="/"><img src={logo} alt='' className={`${classes.logoStyle}`} /></Link>
                     </div>
                     <Button color="inherit">
-                        <ShoppingCartIcon />
+                        <Link to="/checkout">
+                            <ShoppingCartIcon />
+                            </Link>
                     </Button>
                 </Toolbar>
             </AppBar>
