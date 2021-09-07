@@ -1,4 +1,4 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useEffect, useState } from "react";
 import { Product } from "../data";
 
 export interface ShoppingItem {
@@ -28,8 +28,12 @@ export const CartProvider: FC = (props) => {
             shoppingCart.push({product: product, amount: 1})
         }
 
-        setShoppingCart(shoppingCart);
+        setShoppingCart(shoppingCart) ;
     }
+
+    // useEffect(() => {
+    //     console.log("HEJ!!!");
+    // }, [])
 
     return (
         <CartContext.Provider

@@ -1,8 +1,10 @@
-import { createStyles, makeStyles, Table, TableBody, TableCell, TableHead, TableRow, Theme } from '@material-ui/core';
+import { Button, createStyles, makeStyles, Table, TableBody, TableCell, TableHead, TableRow, Theme } from '@material-ui/core';
 import { useContext } from 'react';
 import { CartContext, ShoppingItem } from '../context/CartContext';
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-const AddTotal = (shoppingCart: ShoppingItem[])  => {
+const addTotal = (shoppingCart: ShoppingItem[])  => {
     let totalPrice = 0;
     shoppingCart.map((item) =>
        totalPrice += item.product.price * item.amount
@@ -11,14 +13,13 @@ const AddTotal = (shoppingCart: ShoppingItem[])  => {
 }
 
 export const CheckOutTable = () => {
-    const {shoppingCart} = useContext(CartContext);
-    const totalPrice = AddTotal(shoppingCart);
+    const {shoppingCart, addToCart} = useContext(CartContext);
+    const totalPrice = addTotal(shoppingCart);
+
+    console.log(shoppingCart);
     
     const classes = useStyles();
     
-    
-    
-
     return (
         <Table className={classes.MainStyle}>
         <TableHead>
@@ -39,7 +40,15 @@ export const CheckOutTable = () => {
                     {shoppingItem.product.price}
                 </TableCell>
                 <TableCell>
+                    <Button onClick={() => {
+                        //addToCart(shoppingItem.product)
+                    }}>
+                        <ArrowLeftIcon />
+                    </Button>
                     {shoppingItem.amount}
+                    <Button onClick={() => addToCart(shoppingItem.product)}>
+                        <ArrowRightIcon />
+                    </Button>
                 </TableCell>
                 <TableCell>
                     {shoppingItem.amount * shoppingItem.product.price}
