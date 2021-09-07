@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router'
 import { CheckoutPage } from '../pages/CheckoutPage'
+import { ConfirmationPage } from '../pages/ConfirmationPage'
 import { ProductPage } from '../pages/ProductPage'
 import StartPage from '../pages/StartPage'
 import { HeaderBar } from './Header'
@@ -12,6 +13,7 @@ export const Layout = () => {
                 <Route exact path='/' component={StartPage} />
                 <Route exact path='/product/:id' component={ProductPage} />
                 <Route exact path='/checkout' component={CheckoutPage} />
+                <Route exact path='/confirmation' component={ConfirmationPage} />
             </Switch>
         </div>
     )   
