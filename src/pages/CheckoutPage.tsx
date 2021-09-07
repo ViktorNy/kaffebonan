@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { CheckOutTable } from '../components/CheckOutTable';
 
 export const CheckoutPage = () => {
-    return <h1>Checkout page</h1>
-    
+    return (
+        <CheckOutTable/>
+    )   
 }

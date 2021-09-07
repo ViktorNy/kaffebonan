@@ -1,7 +1,7 @@
 import { createContext, FC, useState } from "react";
 import { Product } from "../data";
 
-interface ShoppingItem {
+export interface ShoppingItem {
     product: Product;
     amount: number;
 }
@@ -9,11 +9,13 @@ interface ShoppingItem {
 interface ContextValue {
     shoppingCart: ShoppingItem[];
     addToCart: (product: Product) => void;
+    removeFromCart: (product: Product) => void;
 }
 
 export const CartContext = createContext<ContextValue>({
     shoppingCart: [],
-    addToCart: () => {}
+    addToCart: () => {},
+    removeFromCart: () => {}
 });
 
 export const CartProvider: FC = (props) => {
@@ -24,18 +26,33 @@ export const CartProvider: FC = (props) => {
         
         if (index >= 0) {
             shoppingCart[index].amount++;
+            setShoppingCart([...shoppingCart]);
         } else {
-            shoppingCart.push({product: product, amount: 1})
+            setShoppingCart([...shoppingCart, { product: product, amount: 1 }]);
         }
+    }
+    const removeFromCart = (product: Product) => {
+        const index = shoppingCart.findIndex((shoppingItem) => shoppingItem.product.id === product.id);
 
-        setShoppingCart(shoppingCart);
+        if (index >= 0) {
+            shoppingCart[index].amount--;
+            if (shoppingCart[index].amount <= 0)
+            {
+                shoppingCart.splice(index, 1);
+            }
+            setShoppingCart([...shoppingCart]);
+        }else{
+            //Should never happen!
+            throw new Error("Something went wrong");
+        }
     }
 
     return (
         <CartContext.Provider
             value={{
                 shoppingCart,
-                addToCart
+                addToCart,
+                removeFromCart
             }}
         >
             {props.children}

@@ -25,9 +25,7 @@ export const ProductCard: FC<Props> = (props: Props) => {
                     </Link>
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
                         <p>Pris {props.product.price} kr</p>
-                        <Button onClick={() => {
-                            addToCart(props.product)
-                        }}>
+                        <Button onClick={() => addToCart(props.product)}>
                             <AddShoppingCartIcon />
                         </Button>
                     </div>
