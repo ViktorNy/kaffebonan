@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
+import { Redirect } from 'react-router-dom';
 
 
 const defaultValues = {
@@ -13,16 +14,15 @@ const defaultValues = {
 };
 
 const OrderForm = () => {
+
     const [formValues, setformValues] = useState(defaultValues);
+    const [doRedirect, setDoRedirect] = useState(false);
 
     const handleSubmit = (event: FormEvent) => {
-        //event.preventDefault();
         event.preventDefault();
-        console.log(formValues);
-        //console.log(formValues);
+        setDoRedirect(true);
     };
 
-    //const [formValues, setFormValues] = useState(defaultValues);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -82,10 +82,10 @@ const OrderForm = () => {
                     setformValues({ ...formValues, city: e.target.value })
                 }}
             />
-
             <Button variant="contained" color="primary" type="submit">
                 Submit
             </Button>
+            {doRedirect && <Redirect to="/confirmation"/>}
         </form>
     );
 };
