@@ -13,10 +13,8 @@ const addTotal = (shoppingCart: ShoppingItem[])  => {
 }
 
 export const CheckOutTable = () => {
-    const {shoppingCart, addToCart} = useContext(CartContext);
+    const {shoppingCart, addToCart, removeFromCart} = useContext(CartContext);
     const totalPrice = addTotal(shoppingCart);
-
-    console.log(shoppingCart);
     
     const classes = useStyles();
     
@@ -41,7 +39,7 @@ export const CheckOutTable = () => {
                 </TableCell>
                 <TableCell>
                     <Button onClick={() => {
-                        //addToCart(shoppingItem.product)
+                        removeFromCart(shoppingItem.product)
                     }}>
                         <ArrowLeftIcon />
                     </Button>
