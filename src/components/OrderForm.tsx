@@ -1,7 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
-import { kMaxLength } from "buffer";
 
 
 const defaultValues = {
@@ -15,8 +14,8 @@ const defaultValues = {
 
 const OrderForm = () => {
     const [formValues, setformValues] = useState(defaultValues);
-    
-    const handleSubmit = (event : FormEvent) => {
+
+    const handleSubmit = (event: FormEvent) => {
         //event.preventDefault();
         event.preventDefault();
         console.log(formValues);
@@ -33,8 +32,8 @@ const OrderForm = () => {
                 required
                 type="email"
                 value={formValues.email}
-                onChange={e => { 
-                    setformValues({...formValues, email: e.target.value}) 
+                onChange={e => {
+                    setformValues({ ...formValues, email: e.target.value })
                 }}
             />
             <TextField
@@ -67,9 +66,9 @@ const OrderForm = () => {
             <TextField
                 label="Zip Code"
                 variant="filled"
-                required                
+                required
                 value={formValues.zipCode}
-                inputProps={{ pattern:"[0-9]*", minLength:5, maxLength: 5 }}
+                inputProps={{ pattern: "[0-9]*", minLength: 5, maxLength: 5 }}
                 onChange={e => {
                     setformValues({ ...formValues, zipCode: e.target.value.toString() })
                 }}
