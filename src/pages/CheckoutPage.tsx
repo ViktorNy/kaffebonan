@@ -1,5 +1,5 @@
-import { createStyles, makeStyles, Theme } from '@material-ui/core';
-import React, { CSSProperties } from 'react';
+
+import { CSSProperties } from 'react';
 import { CheckOutTable } from '../components/CheckOutTable';
 import OrderForm from '../components/OrderForm';
 
@@ -22,15 +22,3 @@ const rootStyle: CSSProperties = {
     alignItems: "center"
 }
 
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         root: {
-//             flexGrow: 1,
-//         },
-//         contentPadding: {
-//             padding: theme.spacing(2),
-//         },
-//         contentMargin: {
-//             marginTop: '4rem'
-//         },
-//     }));
