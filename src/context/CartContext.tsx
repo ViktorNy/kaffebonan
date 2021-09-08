@@ -10,20 +10,23 @@ interface ContextValue {
     shoppingCart: ShoppingItem[];
     addToCart: (product: Product) => void;
     removeFromCart: (product: Product) => void;
+    emptyCart: () => void;
 }
 
 export const CartContext = createContext<ContextValue>({
     shoppingCart: [],
-    addToCart: () => {},
-    removeFromCart: () => {}
+    addToCart: () => { },
+    removeFromCart: () => { },
+    emptyCart: () => { }
 });
 
 export const CartProvider: FC = (props) => {
+
     const [shoppingCart, setShoppingCart] = useState<ShoppingItem[]>([]);
 
     const addToCart = (product: Product) => {
-        const index = shoppingCart.findIndex((shoppingItem) => shoppingItem.product.id === product.id); 
-        
+        const index = shoppingCart.findIndex((shoppingItem) => shoppingItem.product.id === product.id);
+
         if (index >= 0) {
             shoppingCart[index].amount++;
             setShoppingCart([...shoppingCart]);
@@ -31,20 +34,24 @@ export const CartProvider: FC = (props) => {
             setShoppingCart([...shoppingCart, { product: product, amount: 1 }]);
         }
     }
+
     const removeFromCart = (product: Product) => {
         const index = shoppingCart.findIndex((shoppingItem) => shoppingItem.product.id === product.id);
 
         if (index >= 0) {
             shoppingCart[index].amount--;
-            if (shoppingCart[index].amount <= 0)
-            {
+            if (shoppingCart[index].amount <= 0) {
                 shoppingCart.splice(index, 1);
             }
             setShoppingCart([...shoppingCart]);
-        }else{
+        } else {
             //Should never happen!
             throw new Error("Something went wrong");
         }
+    }
+
+    const emptyCart = () => {
+        setShoppingCart([]);
     }
 
     return (
@@ -52,7 +59,8 @@ export const CartProvider: FC = (props) => {
             value={{
                 shoppingCart,
                 addToCart,
-                removeFromCart
+                removeFromCart,
+                emptyCart
             }}
         >
             {props.children}

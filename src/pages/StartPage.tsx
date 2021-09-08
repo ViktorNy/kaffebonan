@@ -7,7 +7,7 @@ import { productArray } from '../data';
 
 
 const StartPage = () => {
-    
+
     return (
         <div>
             <HeaderBar />
@@ -43,4 +43,4 @@ const useStyles = makeStyles((theme: Theme) =>
         },
     }));
 
-    export default StartPage;
+export default StartPage;
