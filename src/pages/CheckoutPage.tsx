@@ -1,6 +1,7 @@
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/styles';
 import { Theme } from 'pretty-format';
-import React, { useContext } from 'react';
+import React, { useContext, CSSProperties } from 'react';
+
 import { CheckOutTable } from '../components/CheckOutTable';
 import OrderForm from '../components/OrderForm';
 import { CartContext } from '../context/CartContext';
@@ -13,10 +14,13 @@ export const CheckoutPage = () => {
 
     if (shoppingCart.length > 0) {
         return (
+            <div style={rootStyle}>
+            <CheckOutTable />
             <div>
-                <CheckOutTable />
                 <OrderForm />
-            </div>)
+            </div>
+
+        </div>
     }
     else {
         return (
@@ -25,9 +29,25 @@ export const CheckoutPage = () => {
     }
 }
 
+const rootStyle: CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center"
+}
+
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         MainStyle: {
             marginTop: '5rem'
         }
+        root: {
+            flexGrow: 1,
+        },
+        contentPadding: {
+            padding: theme.spacing(2),
+        },
+        contentMargin: {
+            marginTop: '4rem'
+        },
     }));
