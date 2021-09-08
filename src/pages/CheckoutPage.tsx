@@ -22,15 +22,15 @@ const rootStyle: CSSProperties = {
     alignItems: "center"
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            flexGrow: 1,
-        },
-        contentPadding: {
-            padding: theme.spacing(2),
-        },
-        contentMargin: {
-            marginTop: '4rem'
-        },
-    }));
+// const useStyles = makeStyles((theme: Theme) =>
+//     createStyles({
+//         root: {
+//             flexGrow: 1,
+//         },
+//         contentPadding: {
+//             padding: theme.spacing(2),
+//         },
+//         contentMargin: {
+//             marginTop: '4rem'
+//         },
+//     }));

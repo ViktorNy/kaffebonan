@@ -1,9 +1,9 @@
 import { Button, createStyles, makeStyles, Theme } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { CSSProperties, useContext } from 'react';
+import { CSSProperties} from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
-import { Typography } from '@material-ui/core/';
+// import { CartContext } from '../context/CartContext';
+// import { Typography } from '@material-ui/core/';
 
 export const ConfirmationPage = () => {
 

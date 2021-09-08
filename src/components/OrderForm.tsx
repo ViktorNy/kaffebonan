@@ -1,4 +1,4 @@
-import React, { FormEvent, useContext, useRef, useState } from "react";
+import React, { FormEvent, useContext, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button, createStyles, makeStyles, Theme } from "@material-ui/core";
 import { Redirect } from 'react-router-dom';
