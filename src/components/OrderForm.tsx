@@ -1,6 +1,6 @@
 import React, { FormEvent, useContext, useState } from "react";
 import TextField from "@material-ui/core/TextField";
-import { Button, createStyles, makeStyles, Theme } from "@material-ui/core";
+import { Button, createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
 import { Redirect } from 'react-router-dom';
 import { CartContext } from "../context/CartContext";
 
@@ -30,104 +30,116 @@ const OrderForm = () => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className={classes.outerFormMargin}>
-                <TextField
-                    className={classes.formmargin}
-                    style={{ width: "95%" }}
-                    label="E-mail"
-                    variant="filled"
-                    required
-                    type="email"
-                    value={formValues.email}
-                    onChange={e => {
-                        setformValues({ ...formValues, email: e.target.value })
-                    }}
-                />
-            </div>
-            <div>
-                <TextField
-                    className={classes.formmargin}
-                    style={{ width: "45%" }}
-                    label="First Name"
-                    variant="filled"
-                    required
-                    value={formValues.firstName}
-                    onChange={e => {
-                        setformValues({ ...formValues, firstName: e.target.value })
-                    }}
-                />
-                <TextField
-                    className={classes.formmargin}
-                    style={{ width: "45%" }}
-                    label="Last Name"
-                    variant="filled"
-                    required
-                    value={formValues.lastName}
-                    onChange={e => {
-                        setformValues({ ...formValues, lastName: e.target.value })
-                    }}
-                />
-            </div>
-            <div>
-                <TextField
-                    className={classes.formmargin}
-                    label="Address"
-                    variant="filled"
-                    required
-                    value={formValues.address}
-                    onChange={e => {
-                        setformValues({ ...formValues, address: e.target.value })
-                    }}
-                />
-                <TextField
-                    className={classes.formmargin}
-                    label="Zip Code"
-                    variant="filled"
-                    required
-                    value={formValues.zipCode}
-                    inputProps={{ pattern: "[0-9]*", minLength: 5, maxLength: 5 }}
-                    onChange={e => {
-                        setformValues({ ...formValues, zipCode: e.target.value.toString() })
-                    }}
-                />
-                <TextField
-                    className={classes.formmargin}
-                    label="City"
-                    variant="filled"
-                    required
-                    value={formValues.city}
-                    onChange={e => {
-                        setformValues({ ...formValues, city: e.target.value })
-                    }}
-                />
-            </div>
-            <div className={classes.center + ' ' + classes.contentMargin}>
-                <Button variant="contained" color="primary" type="submit">
-                    Submit
-                </Button>
-                {doRedirect && < Redirect to="/confirmation" />}
-            </div>
+        <form onSubmit={handleSubmit} className={classes.formMargin}>
+            <div className={classes.formMargin}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <TextField
+                            fullWidth
+                            label="E-mail"
+                            variant="outlined"
+                            required
+                            type="email"
+                            value={formValues.email}
+                            onChange={e => {
+                                setformValues({ ...formValues, email: e.target.value })
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
+                        <TextField
+                            fullWidth
+                            label="First Name"
+                            variant="outlined"
+                            required
+                            value={formValues.firstName}
+                            onChange={e => {
+                                setformValues({ ...formValues, firstName: e.target.value })
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
+                        <TextField
+                            fullWidth
+                            label="Last Name"
+                            variant="outlined"
+                            required
+                            value={formValues.lastName}
+                            onChange={e => {
+                                setformValues({ ...formValues, lastName: e.target.value })
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} lg={4}>
+                        <TextField
+                            fullWidth
+                            label="Address"
+                            variant="outlined"
+                            required
+                            value={formValues.address}
+                            onChange={e => {
+                                setformValues({ ...formValues, address: e.target.value })
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} lg={4}>
+                        <TextField
+                            fullWidth
+                            label="Zip Code"
+                            variant="outlined"
+                            required
+                            value={formValues.zipCode}
+                            inputProps={{ pattern: "[0-9]*", minLength: 5, maxLength: 5 }}
+                            onChange={e => {
+                                setformValues({ ...formValues, zipCode: e.target.value.toString() })
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} lg={4}>
+                        <TextField
+                            fullWidth
+                            label="City"
+                            variant="outlined"
+                            required
+                            value={formValues.city}
+                            onChange={e => {
+                                setformValues({ ...formValues, city: e.target.value })
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} className={classes.center}>
+                        <Button variant="contained" color="primary" type="submit">
+                            Submit
+                        </Button>
+                        {doRedirect && < Redirect to="/confirmation" />}
+                    </Grid>
+                </Grid>
+            </div >
+        </form >
 
-        </form>
     );
 };
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         contentMargin: {
-            margin: "2rem"
+            marginTop: "2rem"
         },
         center: {
             display: "flex",
             justifyContent: "center",
             alignItems: "center"
         },
-        formmargin: {
-            margin: "1rem"
+        formMargin: {
+            margin: "10%",
+            maxWidth: "1000px"
         },
         outerFormMargin: {
-            marginTop: "3rem"
+            margin: "25%",
+            maxWidth: "200px"
+        },
+        maxwidth: {
+            maxWidth: "75%"
         }
     }));
 
