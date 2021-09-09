@@ -3,6 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import { Button, createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
 import { Redirect } from 'react-router-dom';
 import { CartContext } from "../context/CartContext";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 const defaultValues = {
     email: "",
@@ -22,6 +24,10 @@ const errorMessages = {
     cityErrorMsg: ""
 }
 
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const OrderForm = () => {
 
     const { emptyCart } = useContext(CartContext);
@@ -32,6 +38,15 @@ const OrderForm = () => {
     const [doRedirect, setDoRedirect] = useState(false);
 
     const [errorMessage, setErrorMessage] = useState(errorMessages);
+    const [open, setOpen] = useState(false);
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
 
     const validateField = (value: string, type: string) => {
         let reg;
@@ -72,6 +87,9 @@ const OrderForm = () => {
         {
             setDoRedirect(true);
             emptyCart();
+        }
+        else{
+            setOpen(true);
         }        
     };
 
@@ -178,6 +196,11 @@ const OrderForm = () => {
                         <Button variant="contained" color="primary" type="submit">
                             Submit
                         </Button>
+                        <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="error">
+                                Erroneous Input
+                            </Alert>
+                        </Snackbar>
                         {doRedirect && < Redirect to="/confirmation" />}
                     </Grid>
                 </Grid>
