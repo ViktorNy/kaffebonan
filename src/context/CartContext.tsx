@@ -11,13 +11,15 @@ interface ContextValue {
     addToCart: (product: Product) => void;
     removeFromCart: (product: Product) => void;
     emptyCart: () => void;
+    removeAllOfSpecificProductFromCart: (product: Product) => void
 }
 
 export const CartContext = createContext<ContextValue>({
     shoppingCart: [],
     addToCart: () => { },
     removeFromCart: () => { },
-    emptyCart: () => { }
+    emptyCart: () => { },
+    removeAllOfSpecificProductFromCart: () => { }
 });
 
 export const CartProvider: FC = (props) => {
@@ -50,6 +52,18 @@ export const CartProvider: FC = (props) => {
         }
     }
 
+    const removeAllOfSpecificProductFromCart = (product: Product) => {
+        const index = shoppingCart.findIndex((shoppingItem) => shoppingItem.product.id === product.id);
+
+        if (index >= 0) {
+            shoppingCart.splice(index, 1);
+            setShoppingCart([...shoppingCart]);
+        } else {
+            //Should never happen!
+            throw new Error("Something went wrong");
+        }
+    }
+
     const emptyCart = () => {
         setShoppingCart([]);
     }
@@ -60,7 +74,8 @@ export const CartProvider: FC = (props) => {
                 shoppingCart,
                 addToCart,
                 removeFromCart,
-                emptyCart
+                emptyCart,
+                removeAllOfSpecificProductFromCart
             }}
         >
             {props.children}
