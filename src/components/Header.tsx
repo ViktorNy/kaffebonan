@@ -36,7 +36,7 @@ export const HeaderBar = () => {
                     </div>
                     <Button color="inherit">
                         <Link to="/checkout">
-                            <Badge className={classes.cartStyling} badgeContent={numberOfItemsInCart}>
+                            <Badge className={classes.cartStyling} badgeContent={numberOfItemsInCart} color='secondary'>
                                 <ShoppingCartIcon  className={classes.cartStyling}/>
                             </Badge>
                         </Link>
