@@ -30,7 +30,7 @@ const OrderForm = () => {
 
 
     return (
-        <form onSubmit={handleSubmit} className={classes.formMargin}>
+        <form onSubmit={handleSubmit}>
             <div className={classes.formMargin}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
@@ -140,6 +140,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         maxwidth: {
             maxWidth: "75%"
+        },
+        Grid: {
+            display: "inline-grid"
         }
     }));
 
