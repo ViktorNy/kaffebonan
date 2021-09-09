@@ -13,6 +13,15 @@ const defaultValues = {
     city: ""
 };
 
+const errorMessages = {
+    emailErrorMsg: "",
+    firstNameErrorMsg: "",
+    lastNameErrorMsg: "",
+    addressErrorMsg: "",
+    zipCodeErrorMsg: "",
+    cityErrorMsg: ""
+}
+
 const OrderForm = () => {
 
     const { emptyCart } = useContext(CartContext);
@@ -22,12 +31,49 @@ const OrderForm = () => {
     const [formValues, setformValues] = useState(defaultValues);
     const [doRedirect, setDoRedirect] = useState(false);
 
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-        setDoRedirect(true);
-        emptyCart();
+    const [errorMessage, setErrorMessage] = useState(errorMessages);
+
+    const validateField = (value: string, type: string) => {
+        let reg;
+
+        switch (type) {
+            case "email":
+                reg = new RegExp(/^(?!.*\.{2})[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i).test(value);
+                reg ? setErrorMessage({ ...errorMessage, emailErrorMsg: "" }) : setErrorMessage({ ...errorMessage, emailErrorMsg: "Not an email address" });
+                break;
+            case "firstName":
+                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[\p{L}]$/u).test(value);
+                reg ? setErrorMessage({ ...errorMessage, firstNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, firstNameErrorMsg: "Must be letters" });
+                break;
+            case "lastName":
+                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[\p{L}]$/u).test(value);
+                reg ? setErrorMessage({ ...errorMessage, lastNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, lastNameErrorMsg: "Must be letters" });
+                break;
+            case "address":
+                reg = new RegExp(/^[0-9a-zA-Z]+$/).test(value);
+                reg ? setErrorMessage({ ...errorMessage, addressErrorMsg: "" }) : setErrorMessage({ ...errorMessage, addressErrorMsg: "Unknown symbol" });
+                break;
+            case "city":
+                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[\p{L}]$/u).test(value);
+                reg ? setErrorMessage({ ...errorMessage, cityErrorMsg: "" }) : setErrorMessage({ ...errorMessage, cityErrorMsg: "Must be letters" });
+                break;
+            case "zipCode":
+                reg = new RegExp(/(?:^|\D)(\d{5})(?!\d)/g).test(value);
+                reg ? setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "" }) : setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "Must be 5 numbers" });
+                break;
+            default:
+                break;
+        }
     };
 
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
+        if (Object.values(errorMessage).every(value => value === ""))
+        {
+            setDoRedirect(true);
+            emptyCart();
+        }        
+    };
 
     return (
         <form onSubmit={handleSubmit}>
@@ -35,16 +81,21 @@ const OrderForm = () => {
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <TextField
+
                             fullWidth
                             label="E-mail"
                             variant="outlined"
 
                             required
                             type="email"
+
                             value={formValues.email}
                             onChange={e => {
+                                validateField(e.target.value, "email");
                                 setformValues({ ...formValues, email: e.target.value })
                             }}
+                            error={errorMessage.emailErrorMsg !== ""}
+                            helperText={errorMessage.emailErrorMsg}
                         />
 
                     </Grid>
@@ -56,8 +107,11 @@ const OrderForm = () => {
                             required
                             value={formValues.firstName}
                             onChange={e => {
+                                validateField(e.target.value, "firstName");
                                 setformValues({ ...formValues, firstName: e.target.value })
                             }}
+                            error={errorMessage.firstNameErrorMsg !== ""}
+                            helperText={errorMessage.firstNameErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} lg={6}>
@@ -68,8 +122,11 @@ const OrderForm = () => {
                             required
                             value={formValues.lastName}
                             onChange={e => {
+                                validateField(e.target.value, "lastName");
                                 setformValues({ ...formValues, lastName: e.target.value })
                             }}
+                            error={errorMessage.lastNameErrorMsg !== ""}
+                            helperText={errorMessage.lastNameErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} lg={4}>
@@ -78,10 +135,13 @@ const OrderForm = () => {
                             label="Address"
                             variant="outlined"
                             required
-                            value={formValues.address}
+                            value={formValues.address} 
                             onChange={e => {
+                                validateField(e.target.value, "address");
                                 setformValues({ ...formValues, address: e.target.value })
                             }}
+                            error={errorMessage.addressErrorMsg !== ""}
+                            helperText={errorMessage.addressErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} lg={4}>
@@ -91,10 +151,12 @@ const OrderForm = () => {
                             variant="outlined"
                             required
                             value={formValues.zipCode}
-                            inputProps={{ pattern: "[0-9]*", minLength: 5, maxLength: 5 }}
                             onChange={e => {
-                                setformValues({ ...formValues, zipCode: e.target.value.toString() })
+                                validateField(e.target.value, "zipCode");
+                                setformValues({ ...formValues, zipCode: e.target.value })
                             }}
+                            error={errorMessage.zipCodeErrorMsg !== ""}
+                            helperText={errorMessage.zipCodeErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} lg={4}>
@@ -105,8 +167,11 @@ const OrderForm = () => {
                             required
                             value={formValues.city}
                             onChange={e => {
+                                validateField(e.target.value, "city");
                                 setformValues({ ...formValues, city: e.target.value })
                             }}
+                            error={errorMessage.cityErrorMsg !== ""}
+                            helperText={errorMessage.cityErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} className={classes.center}>
@@ -121,6 +186,7 @@ const OrderForm = () => {
     );
 };
 
+export default OrderForm;
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         contentMargin: {
@@ -146,6 +212,3 @@ const useStyles = makeStyles((theme: Theme) =>
             display: "inline-grid"
         }
     }));
-
-
-export default OrderForm;
