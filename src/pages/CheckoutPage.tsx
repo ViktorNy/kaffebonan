@@ -7,10 +7,7 @@ export const CheckoutPage = () => {
     return (
         <div style={rootStyle}>
             <CheckOutTable />
-            <div>
-                <OrderForm />
-            </div>
-
+            <OrderForm />
         </div>
     )
 }

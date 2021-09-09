@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
         }, headerColor: {
             background: '#8A624A'
         }, logoStyle: {
-            height: '3.9rem',
+            height: '3rem',
             alignItems: 'center'
         }, cartStyling: {
             color: 'white'
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const HeaderBar = () => {
     const classes = useStyles();
-    const {shoppingCart} = useContext(CartContext);
+    const { shoppingCart } = useContext(CartContext);
 
     const numberOfItemsInCart = calcAmountInCart(shoppingCart);
 
