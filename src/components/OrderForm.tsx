@@ -15,6 +15,23 @@ const defaultValues = {
 
 const OrderForm = () => {
 
+    const [error, setError] = useState(false);
+    let errorMessage = "";
+
+    const validateFields = (email: string) => {
+        let reg = new RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i).test(email)
+        console.log(reg);
+
+        if (!reg) {
+            setError(true);
+            errorMessage = "fel mail?"
+        } else {
+            setError(false)
+            errorMessage = "";
+        }
+    };
+
+
     const { emptyCart } = useContext(CartContext);
 
     const classes = useStyles();
@@ -29,21 +46,28 @@ const OrderForm = () => {
     };
 
 
+
+
     return (
         <form onSubmit={handleSubmit}>
             <div className={classes.formMargin}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <TextField
+
                             fullWidth
                             label="E-mail"
                             variant="outlined"
                             required
                             type="email"
+
                             value={formValues.email}
                             onChange={e => {
+                                validateFields(formValues.email);
                                 setformValues({ ...formValues, email: e.target.value })
                             }}
+                            error={error}
+                            helperText={errorMessage}
                         />
                     </Grid>
                     <Grid item xs={12} lg={6}>
@@ -120,6 +144,7 @@ const OrderForm = () => {
     );
 };
 
+export default OrderForm;
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         contentMargin: {
@@ -145,6 +170,3 @@ const useStyles = makeStyles((theme: Theme) =>
             display: "inline-grid"
         }
     }));
-
-
-export default OrderForm;
