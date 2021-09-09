@@ -31,14 +31,14 @@ const OrderForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <Grid container spacing={1} className={classes.gridClass}>
-                <Grid item xs={12}>
-                    <div className={classes.outerFormMargin}>
+            <div className={classes.formMargin}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
                         <TextField
-                            className={classes.formmargin}
-                            style={{ width: "95%" }}
+                            fullWidth
                             label="E-mail"
-                            variant="filled"
+                            variant="outlined"
+
                             required
                             type="email"
                             value={formValues.email}
@@ -46,50 +46,49 @@ const OrderForm = () => {
                                 setformValues({ ...formValues, email: e.target.value })
                             }}
                         />
-                    </div>
-                </Grid>
-                <Grid item xs={8} sm={12}>
-                    <div>
+
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
                         <TextField
-                            className={classes.formmargin}
-                            style={{ width: "45%" }}
+                            fullWidth
                             label="First Name"
-                            variant="filled"
+                            variant="outlined"
                             required
                             value={formValues.firstName}
                             onChange={e => {
                                 setformValues({ ...formValues, firstName: e.target.value })
                             }}
                         />
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
                         <TextField
-                            className={classes.formmargin}
-                            style={{ width: "45%" }}
+                            fullWidth
                             label="Last Name"
-                            variant="filled"
+                            variant="outlined"
                             required
                             value={formValues.lastName}
                             onChange={e => {
                                 setformValues({ ...formValues, lastName: e.target.value })
                             }}
                         />
-                    </div>
-                </Grid>
-                <Grid item xs={12}>
-                    <div>
+                    </Grid>
+                    <Grid item xs={12} lg={4}>
                         <TextField
-                            className={classes.formmargin}
+                            fullWidth
                             label="Address"
-                            variant="filled"
+                            variant="outlined"
                             required
                             value={formValues.address}
                             onChange={e => {
                                 setformValues({ ...formValues, address: e.target.value })
                             }}
                         />
+                    </Grid>
+                    <Grid item xs={12} lg={4}>
                         <TextField
-                            className={classes.formmargin}
+                            fullWidth
                             label="Zip Code"
-                            variant="filled"
+                            variant="outlined"
                             required
                             value={formValues.zipCode}
                             inputProps={{ pattern: "[0-9]*", minLength: 5, maxLength: 5 }}
@@ -97,48 +96,54 @@ const OrderForm = () => {
                                 setformValues({ ...formValues, zipCode: e.target.value.toString() })
                             }}
                         />
+                    </Grid>
+                    <Grid item xs={12} lg={4}>
                         <TextField
-                            className={classes.formmargin}
+                            fullWidth
                             label="City"
-                            variant="filled"
+                            variant="outlined"
                             required
                             value={formValues.city}
                             onChange={e => {
                                 setformValues({ ...formValues, city: e.target.value })
                             }}
                         />
-                    </div>
-                </Grid>
-                <Grid item xs={12}>
-                    <div className={classes.center + ' ' + classes.contentMargin}>
+                    </Grid>
+                    <Grid item xs={12} className={classes.center}>
                         <Button variant="contained" color="primary" type="submit">
                             Submit
                         </Button>
                         {doRedirect && < Redirect to="/confirmation" />}
-                    </div>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </form>
+            </div >
+        </form >
     );
 };
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         contentMargin: {
-            margin: "2rem"
+            marginTop: "2rem"
         },
         center: {
             display: "flex",
             justifyContent: "center",
             alignItems: "center"
         },
-        formmargin: {
-            margin: "1rem"
+        formMargin: {
+            margin: "10%",
+            maxWidth: "1000px"
         },
         outerFormMargin: {
-            marginTop: "3rem"
-        }, gridClass: {
-            display: 'inline-grid'
+            margin: "25%",
+            maxWidth: "200px"
+        },
+        maxwidth: {
+            maxWidth: "75%"
+        },
+        Grid: {
+            display: "inline-grid"
         }
     }));
 
