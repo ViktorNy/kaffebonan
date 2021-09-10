@@ -32,7 +32,7 @@ export const ProductCard: FC<Props> = (props: Props) => {
     };
 
     return (
-        <Grid item xs={6} sm={3} lg={2}>
+        <Grid item xs={6} sm={3} md={2}>
             <Card>
                 <CardContent>
                     <Link to={url} className={`${classes.linkStyle}`}>

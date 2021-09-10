@@ -55,11 +55,11 @@ const OrderForm = () => {
                 reg ? setErrorMessage({ ...errorMessage, emailErrorMsg: "" }) : setErrorMessage({ ...errorMessage, emailErrorMsg: "Inte en epostadress" });
                 break;
             case "firstName":
-                reg = new RegExp(/^[\p{L}'][\p{L}'-]*[\p{L}]$/u).test(value);
+                reg = new RegExp(/^[\p{L}' ][\p{L}' -]*[\p{L}' ]$/u).test(value);
                 reg ? setErrorMessage({ ...errorMessage, firstNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, firstNameErrorMsg: "Skriv endast bokstäver" });
                 break;
             case "lastName":
-                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[\p{L}]$/u).test(value);
+                reg = new RegExp(/^[\p{L}' ][\p{L}' -]*[\p{L}' ]$/u).test(value);
                 reg ? setErrorMessage({ ...errorMessage, lastNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, lastNameErrorMsg: "Skriv endast bokstäver" });
                 break;
             case "address":
@@ -107,7 +107,7 @@ const OrderForm = () => {
         <form onSubmit={handleSubmit}>
             <div className={classes.formMargin}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} md={6}>
                         <TextField
                             id="E-mail"
                             fullWidth
@@ -125,7 +125,7 @@ const OrderForm = () => {
                         />
 
                     </Grid>
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} md={6}>
                         <TextField
                             id="PhoneNumber"
                             fullWidth
@@ -143,7 +143,7 @@ const OrderForm = () => {
                         />
 
                     </Grid>
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} md={6}>
                         <TextField
                             id="First"
                             fullWidth
@@ -159,7 +159,7 @@ const OrderForm = () => {
                             helperText={errorMessage.firstNameErrorMsg}
                         />
                     </Grid>
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} md={6}>
                         <TextField
                             id="Last"
                             fullWidth
@@ -175,7 +175,7 @@ const OrderForm = () => {
                             helperText={errorMessage.lastNameErrorMsg}
                         />
                     </Grid>
-                    <Grid item xs={12} lg={4}>
+                    <Grid item xs={12} md={4}>
                         <TextField
                             id="Address"
                             fullWidth
@@ -191,7 +191,7 @@ const OrderForm = () => {
                             helperText={errorMessage.addressErrorMsg}
                         />
                     </Grid>
-                    <Grid item xs={12} lg={4}>
+                    <Grid item xs={12} md={4}>
                         <TextField
                             id="Zip-Code"
                             fullWidth
@@ -207,7 +207,7 @@ const OrderForm = () => {
                             helperText={errorMessage.zipCodeErrorMsg}
                         />
                     </Grid>
-                    <Grid item xs={12} lg={4}>
+                    <Grid item xs={12} md={4}>
                         <TextField
                             id="City"
                             fullWidth
