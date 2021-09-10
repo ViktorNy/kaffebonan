@@ -37,14 +37,18 @@ export const ProductCard: FC<Props> = (props: Props) => {
 
     return (
         <Grid item xs={6} sm={3} lg={2}>
-            <Card className={classes.cardContainerHeight}>
+            <Card>
                 <CardContent>
-                    <Link to={url}>
+                    <Link to={url} className={`${classes.linkStyle}`}>
                         <CardMedia className={`${classes.media} ${classes.pointer}`} image={props.product.imageUrl} />
-                        <Typography >{props.product.name}</Typography>
+                        <Typography className={`${classes.productNameStyle} ${classes.fontFamily}`}>
+                            {props.product.name}
+                        </Typography>
                     </Link>
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
-                        <p>Pris {props.product.price} kr</p>
+                        <Typography className={`${classes.fontFamily} ${classes.fontWeight}`}>
+                            Price {props.product.price}kr
+                        </Typography>
                         <Button onClick={handleClick}>
                             <AddShoppingCartIcon />
                         </Button>
@@ -72,9 +76,23 @@ const useStyles = makeStyles((theme: Theme) =>
         spaceBetween: {
             justifyContent: 'space-between'
         },
-        cardContainerHeight: {
-            minHeight: '300px'
-        }, pointer: {
+        pointer: {
             cursor: 'pointer'
+        },
+        productNameStyle: {
+            height: '3rem',
+            display: '-webkit-box',
+            boxOrient: 'vertical',
+            lineClamp: 2,
+            wordBreak: 'break-word',
+            overflow: 'hidden',
+            color: "#000000"
+        },
+        linkStyle: {
+            textDecoration: "none"
+        }, fontFamily: {
+            fontFamily: 'sans-serif',
+        }, fontWeight: {
+            fontWeight: 'bold'
         }
     }));
