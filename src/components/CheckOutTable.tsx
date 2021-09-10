@@ -23,7 +23,7 @@ export const CheckOutTable = () => {
         <Table className={classes.MainStyle}>
         <TableHead>
         <TableRow>
-            <TableCell className={classes.TableStyle}>Picture</TableCell>
+                    <TableCell className={`${classes.TableStyle} ${classes.imageStyle}`}></TableCell>
             <TableCell className={classes.TableStyle}>Product Name</TableCell>
             <TableCell className={classes.TableStyle}>Unit price</TableCell>
             <TableCell className={classes.TableStyle}>Amount</TableCell>
@@ -34,7 +34,7 @@ export const CheckOutTable = () => {
     <TableBody>
         {shoppingCart.map((shoppingItem) => (
             <TableRow>
-                <TableCell>
+                <TableCell className={`${classes.imageStyle}`}>
                     <CardMedia className={`${classes.media}`} image={shoppingItem.product.imageUrl} />
                 </TableCell>
                 <TableCell>
@@ -43,14 +43,12 @@ export const CheckOutTable = () => {
                 <TableCell>
                     {shoppingItem.product.price}
                 </TableCell>
-                <TableCell>
-                    <Button onClick={() => {
-                        removeFromCart(shoppingItem.product)
-                    }}>
+                <TableCell className={classes.amountArrowStyle}>
+                    <Button onClick={() => removeFromCart(shoppingItem.product)} className={classes.arrowButtonStyle}>
                         <ArrowLeftIcon />
                     </Button>
                     {shoppingItem.amount}
-                    <Button onClick={() => addToCart(shoppingItem.product)}>
+                    <Button onClick={() => addToCart(shoppingItem.product)} className={classes.arrowButtonStyle}>
                         <ArrowRightIcon />
                     </Button>
                 </TableCell>
@@ -85,11 +83,23 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         MainStyle: {
             marginTop: '4rem'
-        }, TableStyle: {
+        }, 
+        TableStyle: {
             fontWeight: 'bold'
         },
         media: {
-            height: 0,
             paddingTop: '100%', // 16:9
         },
+        amountArrowStyle: {
+            whiteSpace: 'nowrap'
+        },
+        arrowButtonStyle:{
+            padding: '0',
+            whiteSpace: 'nowrap',
+            minWidth: '20px'
+        },
+        imageStyle:{
+            minWidth: '3rem',
+            maxWidth: '5rem'
+        }
     }));
