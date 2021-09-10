@@ -8,6 +8,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 const defaultValues = {
     email: "",
+    phoneNumber: "",
     firstName: "",
     lastName: "",
     address: "",
@@ -17,6 +18,7 @@ const defaultValues = {
 
 const errorMessages = {
     emailErrorMsg: "",
+    PhoneNumberErrorMsg: "",
     firstNameErrorMsg: "",
     lastNameErrorMsg: "",
     addressErrorMsg: "",
@@ -72,6 +74,11 @@ const OrderForm = () => {
                 reg = new RegExp(/(?:^|\D)(\d{5})(?!\d)/g).test(value);
                 reg ? setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "" }) : setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "Must be 5 numbers" });
                 break;
+            case "phone number":
+                reg = new RegExp(/^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/).test(value);
+                reg ? setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: "" }) : setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: "Invalid mobile phone number" });
+                break;
+
             default:
                 break;
         }
@@ -79,39 +86,34 @@ const OrderForm = () => {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        if (Object.values(errorMessage).every(value => value === ""))
-        {
-            if (shoppingCart.length > 0)
-            {
+        if (Object.values(errorMessage).every(value => value === "")) {
+            if (shoppingCart.length > 0) {
                 setDoRedirect(true);
                 emptyCart();
             }
-            else{
+            else {
                 setOpen(true);
                 setAlertMsg("There's nothing in the cart");
             }
-            
+
         }
-        else{
+        else {
             setOpen(true);
             setAlertMsg("Erroneous Input");
-        }        
+        }
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <div className={classes.formMargin}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} lg={6}>
                         <TextField
-
                             fullWidth
                             label="E-mail"
                             variant="outlined"
-
                             required
                             type="email"
-
                             value={formValues.email}
                             onChange={e => {
                                 validateField(e.target.value, "email");
@@ -119,6 +121,23 @@ const OrderForm = () => {
                             }}
                             error={errorMessage.emailErrorMsg !== ""}
                             helperText={errorMessage.emailErrorMsg}
+                        />
+
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
+                        <TextField
+                            fullWidth
+                            label="Mobile phone number"
+                            variant="outlined"
+                            required
+                            type="phone number"
+                            value={formValues.phoneNumber}
+                            onChange={e => {
+                                validateField(e.target.value, "phone number");
+                                setformValues({ ...formValues, phoneNumber: e.target.value })
+                            }}
+                            error={errorMessage.PhoneNumberErrorMsg !== ""}
+                            helperText={errorMessage.PhoneNumberErrorMsg}
                         />
 
                     </Grid>
