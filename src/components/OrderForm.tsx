@@ -4,7 +4,7 @@ import { Button, createStyles, Grid, makeStyles, Theme } from "@material-ui/core
 import { Redirect } from 'react-router-dom';
 import { CartContext } from "../context/CartContext";
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const defaultValues = {
     email: "",
@@ -24,21 +24,17 @@ const errorMessages = {
     cityErrorMsg: ""
 }
 
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
 const OrderForm = () => {
 
-    const { emptyCart } = useContext(CartContext);
+    const { shoppingCart, emptyCart } = useContext(CartContext);
 
     const classes = useStyles();
 
     const [formValues, setformValues] = useState(defaultValues);
     const [doRedirect, setDoRedirect] = useState(false);
-
     const [errorMessage, setErrorMessage] = useState(errorMessages);
     const [open, setOpen] = useState(false);
+    const [alertMsg, setAlertMsg] = useState("");
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
@@ -85,11 +81,20 @@ const OrderForm = () => {
         event.preventDefault();
         if (Object.values(errorMessage).every(value => value === ""))
         {
-            setDoRedirect(true);
-            emptyCart();
+            if (shoppingCart.length > 0)
+            {
+                setDoRedirect(true);
+                emptyCart();
+            }
+            else{
+                setOpen(true);
+                setAlertMsg("There's nothing in the cart");
+            }
+            
         }
         else{
             setOpen(true);
+            setAlertMsg("Erroneous Input");
         }        
     };
 
@@ -197,9 +202,9 @@ const OrderForm = () => {
                             Submit
                         </Button>
                         <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="error">
-                                Erroneous Input
-                            </Alert>
+                            <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="error">
+                                {alertMsg}
+                            </MuiAlert>
                         </Snackbar>
                         {doRedirect && < Redirect to="/confirmation" />}
                     </Grid>
