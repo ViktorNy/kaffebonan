@@ -41,9 +41,9 @@ export const ProductCard: FC<Props> = (props: Props) => {
                 <CardContent>
                     <Link to={url} className={`${classes.linkStyle}`}>
                         <CardMedia className={`${classes.media} ${classes.pointer}`} image={props.product.imageUrl} />
-                            <Typography className={`${classes.productNameStyle}`}>
-                                {props.product.name}
-                            </Typography>
+                        <Typography className={`${classes.productNameStyle}`}>
+                            {props.product.name}
+                        </Typography>
                     </Link>
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
                         <p>Price {props.product.price}kr</p>
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         spaceBetween: {
             justifyContent: 'space-between'
-        }, 
+        },
         pointer: {
             cursor: 'pointer'
         },
@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme: Theme) =>
             overflow: 'hidden',
             color: "#000000"
         },
-        linkStyle:{
+        linkStyle: {
             textDecoration: "none"
         }
     }));
