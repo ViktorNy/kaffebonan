@@ -4,14 +4,10 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import MuiAlert from '@material-ui/lab/Alert';
 
 interface Props {
     product: Product;
-}
-
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 export const ProductInformation = ({ product }: Props) => {
@@ -41,9 +37,9 @@ export const ProductInformation = ({ product }: Props) => {
                     <AddShoppingCartIcon />
                 </Button>
                 <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="success">
-                        {product.name} added to cart
-                    </Alert>
+                    <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="success">
+                        {product.name} lagd i kundvagnen
+                    </MuiAlert>
                 </Snackbar>
             </div>
             <p className={classes.fontFamily}>{product.info}</p>

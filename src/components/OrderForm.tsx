@@ -50,27 +50,27 @@ const OrderForm = () => {
         switch (type) {
             case "email":
                 reg = new RegExp(/^(?!.*\.{2})[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i).test(value);
-                reg ? setErrorMessage({ ...errorMessage, emailErrorMsg: "" }) : setErrorMessage({ ...errorMessage, emailErrorMsg: "Not an email address" });
+                reg ? setErrorMessage({ ...errorMessage, emailErrorMsg: "" }) : setErrorMessage({ ...errorMessage, emailErrorMsg: "Inte en epostadress" });
                 break;
             case "firstName":
                 reg = new RegExp(/^[\p{L}'][\p{L}'-]*[\p{L}]$/u).test(value);
-                reg ? setErrorMessage({ ...errorMessage, firstNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, firstNameErrorMsg: "Must be letters" });
+                reg ? setErrorMessage({ ...errorMessage, firstNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, firstNameErrorMsg: "Skriv endast bokstäver" });
                 break;
             case "lastName":
                 reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[\p{L}]$/u).test(value);
-                reg ? setErrorMessage({ ...errorMessage, lastNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, lastNameErrorMsg: "Must be letters" });
+                reg ? setErrorMessage({ ...errorMessage, lastNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, lastNameErrorMsg: "Skriv endast bokstäver" });
                 break;
             case "address":
                 reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u).test(value);
-                reg ? setErrorMessage({ ...errorMessage, addressErrorMsg: "" }) : setErrorMessage({ ...errorMessage, addressErrorMsg: "Unknown symbol" });
+                reg ? setErrorMessage({ ...errorMessage, addressErrorMsg: "" }) : setErrorMessage({ ...errorMessage, addressErrorMsg: "Ogiltiga symboler" });
                 break;
             case "city":
                 reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u).test(value);
-                reg ? setErrorMessage({ ...errorMessage, cityErrorMsg: "" }) : setErrorMessage({ ...errorMessage, cityErrorMsg: "Must be letters" });
+                reg ? setErrorMessage({ ...errorMessage, cityErrorMsg: "" }) : setErrorMessage({ ...errorMessage, cityErrorMsg: "Skriv endast bokstäver" });
                 break;
             case "zipCode":
                 reg = new RegExp(/(?:^|\D)(\d{5})(?!\d)/g).test(value);
-                reg ? setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "" }) : setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "Must be 5 numbers" });
+                reg ? setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "" }) : setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "Postnummer måste vara 5 siffror" });
                 break;
             default:
                 break;
@@ -88,13 +88,13 @@ const OrderForm = () => {
             }
             else{
                 setOpen(true);
-                setAlertMsg("There's nothing in the cart");
+                setAlertMsg("Vagnen är tom");
             }
             
         }
         else{
             setOpen(true);
-            setAlertMsg("Erroneous Input");
+            setAlertMsg("Ogiltiga värden");
         }        
     };
 
@@ -125,7 +125,7 @@ const OrderForm = () => {
                     <Grid item xs={12} lg={6}>
                         <TextField
                             fullWidth
-                            label="First Name"
+                            label="Förnamn"
                             variant="outlined"
                             required
                             value={formValues.firstName}
@@ -140,7 +140,7 @@ const OrderForm = () => {
                     <Grid item xs={12} lg={6}>
                         <TextField
                             fullWidth
-                            label="Last Name"
+                            label="Efternamn"
                             variant="outlined"
                             required
                             value={formValues.lastName}
@@ -155,7 +155,7 @@ const OrderForm = () => {
                     <Grid item xs={12} lg={4}>
                         <TextField
                             fullWidth
-                            label="Address"
+                            label="Adress"
                             variant="outlined"
                             required
                             value={formValues.address}
@@ -170,7 +170,7 @@ const OrderForm = () => {
                     <Grid item xs={12} lg={4}>
                         <TextField
                             fullWidth
-                            label="Zip Code"
+                            label="Postnummer"
                             variant="outlined"
                             required
                             value={formValues.zipCode}
@@ -185,7 +185,7 @@ const OrderForm = () => {
                     <Grid item xs={12} lg={4}>
                         <TextField
                             fullWidth
-                            label="City"
+                            label="Stad"
                             variant="outlined"
                             required
                             value={formValues.city}
@@ -199,7 +199,7 @@ const OrderForm = () => {
                     </Grid>
                     <Grid item xs={12} className={classes.center}>
                         <Button variant="contained" color="primary" type="submit">
-                            Submit
+                            Bekräfta beställning
                         </Button>
                         <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
                             <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="error">

@@ -12,10 +12,10 @@ export const ConfirmationPage = () => {
     return (
         <div style={rootStyle}>
             <div><CheckCircleIcon /></div>
-            <div className={classes.contentMargin + ' ' + classes.fontSize}>Thank you for your purchase, your order is on the way.</div>
+            <div className={classes.contentMargin + ' ' + classes.fontSize}>Tack för din beställning! Din order är på väg.</div>
             <Link to='/' className={classes.textdecoration}>
                 <Button className={classes.contentMargin + ' ' + classes.buttonMargin} variant="contained" color="primary" type="submit">
-                    StartPage
+                    Till Startsidan
                 </Button>
             </Link>
         </div>
@@ -33,7 +33,8 @@ const rootStyle: CSSProperties = {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         contentMargin: {
-            marginTop: '1rem'
+            // marginTop: '1rem'
+            margin: '1rem'
         },
         textdecoration: {
             textDecoration: "none"

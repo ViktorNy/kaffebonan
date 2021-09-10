@@ -5,14 +5,10 @@ import { Link } from 'react-router-dom';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { CartContext } from '../context/CartContext';
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import MuiAlert from '@material-ui/lab/Alert';
 
 interface Props {
     product: Product;
-}
-
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 export const ProductCard: FC<Props> = (props: Props) => {
@@ -47,15 +43,15 @@ export const ProductCard: FC<Props> = (props: Props) => {
                     </Link>
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
                         <Typography className={`${classes.fontFamily} ${classes.fontWeight}`}>
-                            Price {props.product.price}kr
+                            Pris: {props.product.price}kr
                         </Typography>
                         <Button onClick={handleClick}>
                             <AddShoppingCartIcon />
                         </Button>
                         <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="success">
-                                {props.product.name} added to cart
-                            </Alert>
+                            <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity='success' >
+                                {props.product.name} lagd i kundvagnen
+                            </MuiAlert>
                         </Snackbar>
                     </div>
                 </CardContent>
