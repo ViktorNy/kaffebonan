@@ -145,7 +145,7 @@ const OrderForm = () => {
                     </Grid>
                     <Grid item xs={12} lg={6}>
                         <TextField
-                            id="First Name"
+                            id="First"
                             fullWidth
                             label="Förnamn"
                             variant="outlined"
@@ -161,7 +161,7 @@ const OrderForm = () => {
                     </Grid>
                     <Grid item xs={12} lg={6}>
                         <TextField
-                            id="Last Name"
+                            id="Last"
                             fullWidth
                             label="Efternamn"
                             variant="outlined"
