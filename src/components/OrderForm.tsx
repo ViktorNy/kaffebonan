@@ -53,7 +53,7 @@ const OrderForm = () => {
                 reg ? setErrorMessage({ ...errorMessage, emailErrorMsg: "" }) : setErrorMessage({ ...errorMessage, emailErrorMsg: "Not an email address" });
                 break;
             case "firstName":
-                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[\p{L}]$/u).test(value);
+                reg = new RegExp(/^[\p{L}'][\p{L}'-]*[\p{L}]$/u).test(value);
                 reg ? setErrorMessage({ ...errorMessage, firstNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, firstNameErrorMsg: "Must be letters" });
                 break;
             case "lastName":
@@ -61,11 +61,11 @@ const OrderForm = () => {
                 reg ? setErrorMessage({ ...errorMessage, lastNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, lastNameErrorMsg: "Must be letters" });
                 break;
             case "address":
-                reg = new RegExp(/^[0-9a-zA-Z]+$/).test(value);
+                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u).test(value);
                 reg ? setErrorMessage({ ...errorMessage, addressErrorMsg: "" }) : setErrorMessage({ ...errorMessage, addressErrorMsg: "Unknown symbol" });
                 break;
             case "city":
-                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[\p{L}]$/u).test(value);
+                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u).test(value);
                 reg ? setErrorMessage({ ...errorMessage, cityErrorMsg: "" }) : setErrorMessage({ ...errorMessage, cityErrorMsg: "Must be letters" });
                 break;
             case "zipCode":
@@ -158,7 +158,7 @@ const OrderForm = () => {
                             label="Address"
                             variant="outlined"
                             required
-                            value={formValues.address} 
+                            value={formValues.address}
                             onChange={e => {
                                 validateField(e.target.value, "address");
                                 setformValues({ ...formValues, address: e.target.value })
