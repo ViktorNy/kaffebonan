@@ -100,7 +100,7 @@ const OrderForm = () => {
         else {
             setOpen(true);
             setAlertMsg("Ogiltiga värden");
-        }   
+        }
     };
 
     return (
@@ -109,6 +109,7 @@ const OrderForm = () => {
                 <Grid container spacing={3}>
                     <Grid item xs={12} lg={6}>
                         <TextField
+                            id="E-mail"
                             fullWidth
                             label="E-mail"
                             variant="outlined"
@@ -126,6 +127,7 @@ const OrderForm = () => {
                     </Grid>
                     <Grid item xs={12} lg={6}>
                         <TextField
+                            id="PhoneNumber"
                             fullWidth
                             label="Mobilnummer"
                             variant="outlined"
@@ -143,6 +145,7 @@ const OrderForm = () => {
                     </Grid>
                     <Grid item xs={12} lg={6}>
                         <TextField
+                            id="First Name"
                             fullWidth
                             label="Förnamn"
                             variant="outlined"
@@ -158,6 +161,7 @@ const OrderForm = () => {
                     </Grid>
                     <Grid item xs={12} lg={6}>
                         <TextField
+                            id="Last Name"
                             fullWidth
                             label="Efternamn"
                             variant="outlined"
@@ -173,6 +177,7 @@ const OrderForm = () => {
                     </Grid>
                     <Grid item xs={12} lg={4}>
                         <TextField
+                            id="Address"
                             fullWidth
                             label="Adress"
                             variant="outlined"
@@ -188,6 +193,7 @@ const OrderForm = () => {
                     </Grid>
                     <Grid item xs={12} lg={4}>
                         <TextField
+                            id="Zip-Code"
                             fullWidth
                             label="Postnummer"
                             variant="outlined"
@@ -203,6 +209,7 @@ const OrderForm = () => {
                     </Grid>
                     <Grid item xs={12} lg={4}>
                         <TextField
+                            id="City"
                             fullWidth
                             label="Stad"
                             variant="outlined"
