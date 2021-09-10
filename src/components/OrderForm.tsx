@@ -76,7 +76,7 @@ const OrderForm = () => {
                 break;
             case "phone number":
                 reg = new RegExp(/^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/).test(value);
-                reg ? setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: "" }) : setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: "Invalid phone number" });
+                reg ? setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: "" }) : setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: "Invalid mobile phone number" });
                 break;
 
             default:
@@ -127,7 +127,7 @@ const OrderForm = () => {
                     <Grid item xs={12} lg={6}>
                         <TextField
                             fullWidth
-                            label="Phone number"
+                            label="Mobile phone number"
                             variant="outlined"
                             required
                             type="phone number"
