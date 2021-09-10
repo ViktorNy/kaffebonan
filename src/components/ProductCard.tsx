@@ -41,12 +41,14 @@ export const ProductCard: FC<Props> = (props: Props) => {
                 <CardContent>
                     <Link to={url} className={`${classes.linkStyle}`}>
                         <CardMedia className={`${classes.media} ${classes.pointer}`} image={props.product.imageUrl} />
-                        <Typography className={`${classes.productNameStyle}`}>
+                        <Typography className={`${classes.productNameStyle} ${classes.fontFamily}`}>
                             {props.product.name}
                         </Typography>
                     </Link>
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
-                        <p>Price {props.product.price}kr</p>
+                        <Typography className={`${classes.fontFamily} ${classes.fontWeight}`}>
+                            Price {props.product.price}kr
+                        </Typography>
                         <Button onClick={handleClick}>
                             <AddShoppingCartIcon />
                         </Button>
@@ -88,5 +90,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         linkStyle: {
             textDecoration: "none"
+        }, fontFamily: {
+            fontFamily: 'sans-serif',
+        }, fontWeight: {
+            fontWeight: 'bold'
         }
     }));

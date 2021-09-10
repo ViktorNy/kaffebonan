@@ -34,9 +34,9 @@ export const ProductInformation = ({ product }: Props) => {
 
     return (
         <div className={classes.flex + ' ' + classes.columnDirection + ' ' + classes.flexGrowOne + ' ' + classes.textSize + ' ' + classes.textMargin}>
-            <h1>{product?.name}</h1>
+            <h1 className={classes.fontFamily}>{product?.name}</h1>
             <div className={classes.flex + ' ' + classes.spaceBetween}>
-                <h2>{product.price} kr</h2>
+                <h2 className={classes.fontFamily}>{product.price} kr</h2>
                 <Button color="inherit" onClick={handleClick}>
                     <AddShoppingCartIcon />
                 </Button>
@@ -46,7 +46,7 @@ export const ProductInformation = ({ product }: Props) => {
                     </Alert>
                 </Snackbar>
             </div>
-            <p>{product.info}</p>
+            <p className={classes.fontFamily}>{product.info}</p>
         </div>
     )
 }
@@ -67,5 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
             minWidth: '280px'
         }, spaceBetween: {
             justifyContent: 'space-between'
+        }, fontFamily: {
+            fontFamily: 'sans-serif',
         }
     }));
