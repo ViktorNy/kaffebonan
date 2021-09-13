@@ -1,29 +1,29 @@
-import React, { FormEvent, useContext, useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import { Button, createStyles, Grid, makeStyles, Theme } from "@material-ui/core";
+import React, { FormEvent, useContext, useState } from 'react';
+import TextField from '@material-ui/core/TextField';
+import { Button, createStyles, Grid, makeStyles, Theme } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
-import { CartContext } from "../context/CartContext";
+import { CartContext } from '../context/CartContext';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
 const defaultValues = {
-    email: "",
-    phoneNumber: "",
-    firstName: "",
-    lastName: "",
-    address: "",
-    zipCode: "",
-    city: ""
+    email: '',
+    phoneNumber: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    zipCode: '',
+    city: ''
 };
 
 const errorMessages = {
-    emailErrorMsg: "",
-    PhoneNumberErrorMsg: "",
-    firstNameErrorMsg: "",
-    lastNameErrorMsg: "",
-    addressErrorMsg: "",
-    zipCodeErrorMsg: "",
-    cityErrorMsg: ""
+    emailErrorMsg: '',
+    PhoneNumberErrorMsg: '',
+    firstNameErrorMsg: '',
+    lastNameErrorMsg: '',
+    addressErrorMsg: '',
+    zipCodeErrorMsg: '',
+    cityErrorMsg: ''
 }
 
 const OrderForm = () => {
@@ -36,7 +36,7 @@ const OrderForm = () => {
     const [doRedirect, setDoRedirect] = useState(false);
     const [errorMessage, setErrorMessage] = useState(errorMessages);
     const [open, setOpen] = useState(false);
-    const [alertMsg, setAlertMsg] = useState("");
+    const [alertMsg, setAlertMsg] = useState('');
 
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
@@ -50,33 +50,33 @@ const OrderForm = () => {
         let reg;
 
         switch (type) {
-            case "email":
+            case 'email':
                 reg = new RegExp(/^(?!.*\.{2})[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i).test(value);
-                reg ? setErrorMessage({ ...errorMessage, emailErrorMsg: "" }) : setErrorMessage({ ...errorMessage, emailErrorMsg: "Inte en epostadress" });
+                reg ? setErrorMessage({ ...errorMessage, emailErrorMsg: '' }) : setErrorMessage({ ...errorMessage, emailErrorMsg: 'Inte en epostadress' });
                 break;
-            case "firstName":
+            case 'firstName':
                 reg = new RegExp(/^[\p{L}' ][\p{L}' -]*[\p{L}' ]$/u).test(value);
-                reg ? setErrorMessage({ ...errorMessage, firstNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, firstNameErrorMsg: "Skriv endast bokstäver" });
+                reg ? setErrorMessage({ ...errorMessage, firstNameErrorMsg: '' }) : setErrorMessage({ ...errorMessage, firstNameErrorMsg: 'Skriv endast bokstäver' });
                 break;
-            case "lastName":
+            case 'lastName':
                 reg = new RegExp(/^[\p{L}' ][\p{L}' -]*[\p{L}' ]$/u).test(value);
-                reg ? setErrorMessage({ ...errorMessage, lastNameErrorMsg: "" }) : setErrorMessage({ ...errorMessage, lastNameErrorMsg: "Skriv endast bokstäver" });
+                reg ? setErrorMessage({ ...errorMessage, lastNameErrorMsg: '' }) : setErrorMessage({ ...errorMessage, lastNameErrorMsg: 'Skriv endast bokstäver' });
                 break;
-            case "address":
+            case 'address':
                 reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u).test(value);
-                reg ? setErrorMessage({ ...errorMessage, addressErrorMsg: "" }) : setErrorMessage({ ...errorMessage, addressErrorMsg: "Ogiltiga symboler" });
+                reg ? setErrorMessage({ ...errorMessage, addressErrorMsg: '' }) : setErrorMessage({ ...errorMessage, addressErrorMsg: 'Ogiltiga symboler' });
                 break;
-            case "city":
+            case 'city':
                 reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u).test(value);
-                reg ? setErrorMessage({ ...errorMessage, cityErrorMsg: "" }) : setErrorMessage({ ...errorMessage, cityErrorMsg: "Skriv endast bokstäver" });
+                reg ? setErrorMessage({ ...errorMessage, cityErrorMsg: '' }) : setErrorMessage({ ...errorMessage, cityErrorMsg: 'Skriv endast bokstäver' });
                 break;
-            case "zipCode":
+            case 'zipCode':
                 reg = new RegExp(/(?:^|\D)(\d{5})(?!\d)/g).test(value);
-                reg ? setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "" }) : setErrorMessage({ ...errorMessage, zipCodeErrorMsg: "Postnummer måste vara 5 siffror" });
+                reg ? setErrorMessage({ ...errorMessage, zipCodeErrorMsg: '' }) : setErrorMessage({ ...errorMessage, zipCodeErrorMsg: 'Postnummer måste vara 5 siffror' });
                 break;
-            case "phone number":
+            case 'phone number':
                 reg = new RegExp(/^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/).test(value);
-                reg ? setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: "" }) : setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: "Invalid mobile phone number" });
+                reg ? setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: '' }) : setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: 'Invalid mobile phone number' });
                 break;
 
             default:
@@ -86,20 +86,19 @@ const OrderForm = () => {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        if (Object.values(errorMessage).every(value => value === "")) {
+        if (Object.values(errorMessage).every(value => value === '')) {
             if (shoppingCart.length > 0) {
                 setDoRedirect(true);
                 emptyCart();
             }
             else {
                 setOpen(true);
-                setAlertMsg("Vagnen är tom");
+                setAlertMsg('Vagnen är tom');
             }
-
         }
         else {
             setOpen(true);
-            setAlertMsg("Ogiltiga värden");
+            setAlertMsg('Ogiltiga värden');
         }
     };
 
@@ -109,130 +108,130 @@ const OrderForm = () => {
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
                         <TextField
-                            id="E-mail"
+                            id='E-mail'
                             fullWidth
-                            label="E-mail"
-                            variant="outlined"
+                            label='E-mail'
+                            variant='outlined'
                             required
-                            type="email"
+                            type='email'
                             value={formValues.email}
                             onChange={e => {
-                                validateField(e.target.value, "email");
+                                validateField(e.target.value, 'email');
                                 setformValues({ ...formValues, email: e.target.value })
                             }}
-                            error={errorMessage.emailErrorMsg !== ""}
+                            error={errorMessage.emailErrorMsg !== ''}
                             helperText={errorMessage.emailErrorMsg}
                         />
 
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <TextField
-                            id="PhoneNumber"
+                            id='PhoneNumber'
                             fullWidth
-                            label="Mobilnummer"
-                            variant="outlined"
+                            label='Mobilnummer'
+                            variant='outlined'
                             required
-                            type="phone number"
+                            type='phone number'
                             value={formValues.phoneNumber}
                             onChange={e => {
-                                validateField(e.target.value, "phone number");
+                                validateField(e.target.value, 'phone number');
                                 setformValues({ ...formValues, phoneNumber: e.target.value })
                             }}
-                            error={errorMessage.PhoneNumberErrorMsg !== ""}
+                            error={errorMessage.PhoneNumberErrorMsg !== ''}
                             helperText={errorMessage.PhoneNumberErrorMsg}
                         />
 
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <TextField
-                            id="First"
+                            id='First'
                             fullWidth
-                            label="Förnamn"
-                            variant="outlined"
+                            label='Förnamn'
+                            variant='outlined'
                             required
                             value={formValues.firstName}
                             onChange={e => {
-                                validateField(e.target.value, "firstName");
+                                validateField(e.target.value, 'firstName');
                                 setformValues({ ...formValues, firstName: e.target.value })
                             }}
-                            error={errorMessage.firstNameErrorMsg !== ""}
+                            error={errorMessage.firstNameErrorMsg !== ''}
                             helperText={errorMessage.firstNameErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <TextField
-                            id="Last"
+                            id='Last'
                             fullWidth
-                            label="Efternamn"
-                            variant="outlined"
+                            label='Efternamn'
+                            variant='outlined'
                             required
                             value={formValues.lastName}
                             onChange={e => {
-                                validateField(e.target.value, "lastName");
+                                validateField(e.target.value, 'lastName');
                                 setformValues({ ...formValues, lastName: e.target.value })
                             }}
-                            error={errorMessage.lastNameErrorMsg !== ""}
+                            error={errorMessage.lastNameErrorMsg !== ''}
                             helperText={errorMessage.lastNameErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <TextField
-                            id="Address"
+                            id='Address'
                             fullWidth
-                            label="Adress"
-                            variant="outlined"
+                            label='Adress'
+                            variant='outlined'
                             required
                             value={formValues.address}
                             onChange={e => {
-                                validateField(e.target.value, "address");
+                                validateField(e.target.value, 'address');
                                 setformValues({ ...formValues, address: e.target.value })
                             }}
-                            error={errorMessage.addressErrorMsg !== ""}
+                            error={errorMessage.addressErrorMsg !== ''}
                             helperText={errorMessage.addressErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <TextField
-                            id="Zip-Code"
+                            id='Zip-Code'
                             fullWidth
-                            label="Postnummer"
-                            variant="outlined"
+                            label='Postnummer'
+                            variant='outlined'
                             required
                             value={formValues.zipCode}
                             onChange={e => {
-                                validateField(e.target.value, "zipCode");
+                                validateField(e.target.value, 'zipCode');
                                 setformValues({ ...formValues, zipCode: e.target.value })
                             }}
-                            error={errorMessage.zipCodeErrorMsg !== ""}
+                            error={errorMessage.zipCodeErrorMsg !== ''}
                             helperText={errorMessage.zipCodeErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
                         <TextField
-                            id="City"
+                            id='City'
                             fullWidth
-                            label="Stad"
-                            variant="outlined"
+                            label='Stad'
+                            variant='outlined'
                             required
                             value={formValues.city}
                             onChange={e => {
-                                validateField(e.target.value, "city");
+                                validateField(e.target.value, 'city');
                                 setformValues({ ...formValues, city: e.target.value })
                             }}
-                            error={errorMessage.cityErrorMsg !== ""}
+                            error={errorMessage.cityErrorMsg !== ''}
                             helperText={errorMessage.cityErrorMsg}
                         />
                     </Grid>
                     <Grid item xs={12} className={classes.center}>
-                        <Button variant="contained" color="primary" type="submit">
+                        <Button variant='contained' color='primary' type='submit'>
                             Bekräfta beställning
                         </Button>
                         <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-                            <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="error">
+                            <MuiAlert elevation={6} variant='filled' onClose={handleClose} severity='error'>
                                 {alertMsg}
                             </MuiAlert>
                         </Snackbar>
-                        {doRedirect && < Redirect to="/confirmation" />}
+                        {doRedirect && < Redirect to='/confirmation' />}
                     </Grid>
                 </Grid>
             </div >
@@ -244,25 +243,25 @@ export default OrderForm;
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         contentMargin: {
-            marginTop: "2rem"
+            marginTop: '2rem'
         },
         center: {
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
         },
         formMargin: {
-            margin: "10%",
-            maxWidth: "1000px"
+            margin: '10%',
+            maxWidth: '1000px'
         },
         outerFormMargin: {
-            margin: "25%",
-            maxWidth: "200px"
+            margin: '25%',
+            maxWidth: '200px'
         },
         maxwidth: {
-            maxWidth: "75%"
+            maxWidth: '75%'
         },
         Grid: {
-            display: "inline-grid"
+            display: 'inline-grid'
         }
     }));

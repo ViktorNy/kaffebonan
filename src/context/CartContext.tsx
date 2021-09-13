@@ -1,5 +1,5 @@
-import { createContext, FC, useState } from "react";
-import { Product } from "../data";
+import { createContext, FC, useState } from 'react';
+import { Product } from '../data';
 
 export interface ShoppingItem {
     product: Product;
@@ -48,7 +48,7 @@ export const CartProvider: FC = (props) => {
             setShoppingCart([...shoppingCart]);
         } else {
             //Should never happen!
-            throw new Error("Something went wrong");
+            throw new Error('Something went wrong');
         }
     }
 
@@ -60,7 +60,7 @@ export const CartProvider: FC = (props) => {
             setShoppingCart([...shoppingCart]);
         } else {
             //Should never happen!
-            throw new Error("Something went wrong");
+            throw new Error('Something went wrong');
         }
     }
 

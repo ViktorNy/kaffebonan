@@ -1,25 +1,9 @@
 import { AppBar, Toolbar, Button, createStyles, makeStyles, Theme, Badge } from '@material-ui/core';
-// import React from 'react'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import logo from '../images/headerlogo.png';
 import { CartContext, ShoppingItem } from '../context/CartContext';
 import { useContext } from 'react';
-
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        title: {
-            flexGrow: 1,
-            display: 'flex'
-        }, headerColor: {
-            background: '#8A624A'
-        }, logoStyle: {
-            height: '3rem',
-            alignItems: 'center'
-        }, cartStyling: {
-            color: 'white'
-        }
-    }));
 
 export const HeaderBar = () => {
     const classes = useStyles();
@@ -29,15 +13,15 @@ export const HeaderBar = () => {
 
     return (
         <div>
-            <AppBar position="fixed" className={classes.headerColor}>
+            <AppBar position='fixed' className={classes.headerColor}>
                 <Toolbar>
                     <div className={`${classes.title}`}>
-                        <Link to="/"><img src={logo} alt='' className={`${classes.logoStyle}`} /></Link>
+                        <Link to='/'><img src={logo} alt='' className={`${classes.logoStyle}`} /></Link>
                     </div>
-                    <Button color="inherit">
-                        <Link to="/checkout">
+                    <Button color='inherit'>
+                        <Link to='/checkout'>
                             <Badge className={classes.cartStyling} badgeContent={numberOfItemsInCart} color='secondary'>
-                                <ShoppingCartIcon  className={classes.cartStyling}/>
+                                <ShoppingCartIcon className={classes.cartStyling} />
                             </Badge>
                         </Link>
                     </Button>
@@ -52,3 +36,21 @@ const calcAmountInCart = (shoppingCart: ShoppingItem[]) => {
     shoppingCart.map((product) => amount += product.amount)
     return amount;
 }
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        title: {
+            flexGrow: 1,
+            display: 'flex'
+        },
+        headerColor: {
+            background: '#8A624A'
+        },
+        logoStyle: {
+            height: '3rem',
+            alignItems: 'center'
+        },
+        cartStyling: {
+            color: 'white'
+        }
+    }));

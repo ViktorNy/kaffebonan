@@ -49,7 +49,7 @@ export const ProductCard: FC<Props> = (props: Props) => {
                             <AddShoppingCartIcon />
                         </Button>
                         <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-                            <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity='success' >
+                            <MuiAlert elevation={6} variant='filled' onClose={handleClose} severity='success' >
                                 {props.product.name} lagd i kundvagnen
                             </MuiAlert>
                         </Snackbar>
@@ -82,13 +82,15 @@ const useStyles = makeStyles((theme: Theme) =>
             lineClamp: 2,
             wordBreak: 'break-word',
             overflow: 'hidden',
-            color: "#000000"
+            color: '#000000'
         },
         linkStyle: {
-            textDecoration: "none"
-        }, fontFamily: {
+            textDecoration: 'none'
+        },
+        fontFamily: {
             fontFamily: 'sans-serif',
-        }, fontWeight: {
+        },
+        fontWeight: {
             fontWeight: 'bold'
         }
     }));

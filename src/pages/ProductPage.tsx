@@ -17,7 +17,7 @@ export const ProductPage = (props: Props) => {
         return <h1 className={classes.contentMargin}>404 not found yo</h1>
     } else {
         return (
-            <div className= {`${classes.contentMargin} ${classes.justifyCenter} ${classes.flex} ${classes.flexWrap} ${classes.imgPadding}`}>
+            <div className={`${classes.contentMargin} ${classes.justifyCenter} ${classes.flex} ${classes.flexWrap} ${classes.imgPadding}`}>
                 <img src={product.imageUrl} alt='' className={classes.imgSize} />
                 <ProductInformation product={product} />
             </div>
@@ -30,19 +30,21 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         contentMargin: {
             marginTop: '4rem'
-        }, flex: {
+        },
+        flex: {
             display: 'flex',
-        }, justifyCenter: {
+        },
+        justifyCenter: {
             justifyContent: 'center'
-        }, imgSize: {
+        },
+        imgSize: {
             maxHeight: '320px',
             height: '80%',
-
-           
-            
-        }, flexWrap: {
+        },
+        flexWrap: {
             flexWrap: 'wrap'
-        }, imgPadding: {
+        },
+        imgPadding: {
             paddingTop: '1rem'
         }
     }));

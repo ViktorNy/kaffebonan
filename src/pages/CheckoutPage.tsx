@@ -13,9 +13,9 @@ export const CheckoutPage = () => {
 }
 
 const rootStyle: CSSProperties = {
-    display: "flex",
-    justifyContent: "center",
-    flexDirection: "column",
-    alignItems: "center"
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center'
 }
 

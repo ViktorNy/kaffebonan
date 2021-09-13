@@ -27,7 +27,6 @@ export const CheckOutTable = () => {
                     <TableCell className={classes.TableStyle}>Namn</TableCell>
                     <TableCell className={classes.TableStyle}>Pris</TableCell>
                     <TableCell className={classes.TableStyle}>Antal</TableCell>
-                    {/* <TableCell className={classes.TableStyle}>Total</TableCell> */}
                     <TableCell className={classes.TableStyle}>Ta bort</TableCell>
                 </TableRow>
             </TableHead>
@@ -53,9 +52,6 @@ export const CheckOutTable = () => {
                                 <ArrowRightIcon />
                             </Button>
                         </TableCell>
-                        {/* <TableCell>
-                            {shoppingItem.amount * shoppingItem.product.price}
-                        </TableCell> */}
                         <TableCell className={classes.cellPadding}>
                             <Button onClick={() => removeAllOfSpecificProductFromCart(shoppingItem.product)} className={classes.arrowButtonStyle}>
                                 <DeleteForeverIcon />
@@ -65,7 +61,6 @@ export const CheckOutTable = () => {
                 ))}
                 <TableRow>
                     <TableCell colSpan={3} />
-
                     <TableCell className={classes.TableStyle}>
                         Totalpris
                     </TableCell>
@@ -105,9 +100,6 @@ const useStyles = makeStyles((theme: Theme) =>
         imageStyle: {
             minWidth: '2rem',
             maxWidth: '5rem',
-        },
-        tableWidth: {
-            maxWidth: '62,5rem'
         },
         nameStyle: {
             wordBreak: 'break-word',
