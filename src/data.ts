@@ -23,6 +23,7 @@ export interface Product {
 }
 
 export const productArray: Product[] = [
+
     { id: '1', name: 'Bru Gold', info: 'Har du hört historien om när vi besteg Mount Tibidabo i Spanien? Inte? Den är för lång för att berätta här, men köp Bru Gold så får du samma feeling vi hade när vi var där.', price: 199, imageUrl:  (img1) },
     { id: '2', name: 'Drop Coffee', info: 'Många tror att Jesus inte drack kaffe. Vi har egentligen ingen aning om han gjorde det eller inte, men drack han något så var det definitivt detta.', price: 399, imageUrl: (img2) },
     { id: '3', name: 'Bones coffee', info: 'Finns det ens någon skillnad på kaffebönor?", säger din amatör till kompis som inte har koll på kaffe alls. Köp dessa bönor så kan du visa alla dina ignoranta vänner hur fel de har.', price: 49, imageUrl: (img3) },
@@ -35,4 +36,5 @@ export const productArray: Product[] = [
     { id: '10', name: 'Café Du Monde', info: 'Kaffet är gott. Därför köp. Tack.', price: 79, imageUrl: (img10) },
     { id: '11', name: 'Hygge', info: 'Vill du ha ett kaffe som inte bara är dyrt, utan faktiskt smakar bra också? Då är det Hygge du ska köpa.', price: 19, imageUrl: (img11) },
     { id: '12', name: 'OldTown Coffee', info: 'Måste du dricka kaffe på en budget, köp detta lätt begagnade kaffet.', price: 89, imageUrl: (img12) }
+
 ]

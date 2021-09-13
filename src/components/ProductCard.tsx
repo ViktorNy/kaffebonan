@@ -5,14 +5,10 @@ import { Link } from 'react-router-dom';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { CartContext } from '../context/CartContext';
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import MuiAlert from '@material-ui/lab/Alert';
 
 interface Props {
     product: Product;
-}
-
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 export const ProductCard: FC<Props> = (props: Props) => {
@@ -36,22 +32,26 @@ export const ProductCard: FC<Props> = (props: Props) => {
     };
 
     return (
-        <Grid item xs={6} sm={3} lg={2}>
-            <Card className={classes.cardContainerHeight}>
+        <Grid item xs={6} sm={3} md={2}>
+            <Card>
                 <CardContent>
-                    <Link to={url}>
+                    <Link to={url} className={`${classes.linkStyle}`}>
                         <CardMedia className={`${classes.media} ${classes.pointer}`} image={props.product.imageUrl} />
-                        <Typography >{props.product.name}</Typography>
+                        <Typography className={`${classes.productNameStyle} ${classes.fontFamily}`}>
+                            {props.product.name}
+                        </Typography>
                     </Link>
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
-                        <p>Pris {props.product.price} kr</p>
+                        <Typography className={`${classes.fontFamily} ${classes.fontWeight}`}>
+                            Pris: {props.product.price}kr
+                        </Typography>
                         <Button onClick={handleClick}>
                             <AddShoppingCartIcon />
                         </Button>
                         <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="success">
-                                {props.product.name} added to cart
-                            </Alert>
+                            <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity='success' >
+                                {props.product.name} lagd i kundvagnen
+                            </MuiAlert>
                         </Snackbar>
                     </div>
                 </CardContent>
@@ -72,9 +72,23 @@ const useStyles = makeStyles((theme: Theme) =>
         spaceBetween: {
             justifyContent: 'space-between'
         },
-        cardContainerHeight: {
-            minHeight: '300px'
-        }, pointer: {
+        pointer: {
             cursor: 'pointer'
+        },
+        productNameStyle: {
+            height: '3rem',
+            display: '-webkit-box',
+            boxOrient: 'vertical',
+            lineClamp: 2,
+            wordBreak: 'break-word',
+            overflow: 'hidden',
+            color: "#000000"
+        },
+        linkStyle: {
+            textDecoration: "none"
+        }, fontFamily: {
+            fontFamily: 'sans-serif',
+        }, fontWeight: {
+            fontWeight: 'bold'
         }
     }));

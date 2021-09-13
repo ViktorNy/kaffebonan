@@ -4,14 +4,10 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import { useContext, useState } from "react";
 import { CartContext } from "../context/CartContext";
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import MuiAlert from '@material-ui/lab/Alert';
 
 interface Props {
     product: Product;
-}
-
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 export const ProductInformation = ({ product }: Props) => {
@@ -34,19 +30,19 @@ export const ProductInformation = ({ product }: Props) => {
 
     return (
         <div className={classes.flex + ' ' + classes.columnDirection + ' ' + classes.flexGrowOne + ' ' + classes.textSize + ' ' + classes.textMargin}>
-            <h1>{product?.name}</h1>
+            <h1 className={classes.fontFamily}>{product?.name}</h1>
             <div className={classes.flex + ' ' + classes.spaceBetween}>
-                <h2>{product.price} kr</h2>
+                <h2 className={classes.fontFamily}>{product.price} kr</h2>
                 <Button color="inherit" onClick={handleClick}>
                     <AddShoppingCartIcon />
                 </Button>
                 <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="success">
-                        {product.name} added to cart
-                    </Alert>
+                    <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="success">
+                        {product.name} lagd i kundvagnen
+                    </MuiAlert>
                 </Snackbar>
             </div>
-            <p>{product.info}</p>
+            <p className={classes.fontFamily}>{product.info}</p>
         </div>
     )
 }
@@ -67,5 +63,7 @@ const useStyles = makeStyles((theme: Theme) =>
             minWidth: '280px'
         }, spaceBetween: {
             justifyContent: 'space-between'
+        }, fontFamily: {
+            fontFamily: 'sans-serif',
         }
     }));

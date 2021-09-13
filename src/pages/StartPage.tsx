@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         contentMargin: {
             marginTop: '4rem'
-        },
+        }
     }));
 
 export default StartPage;
