@@ -11,16 +11,16 @@ mm.
 
 
 ### Krav för godkänt:
-- [ ] Git & GitHub har använts
-- [ ] Projektmappen innehåller en README.md fil - (läs ovan för mer info)
-- [ ] Uppgiften lämnas in i tid!
-- [ ] Typescript & Material-UI används
-- [ ] React Router används för navigering
-- [ ] Formulären vid utcheckningen ska gå att automatiskt fyllas i
-- [ ] Samtliga fält ska ha valideringsregler
+- [x] Git & GitHub har använts
+- [x] Projektmappen innehåller en README.md fil - (läs ovan för mer info)
+- [x] Uppgiften lämnas in i tid!
+- [x] Typescript & Material-UI används
+- [x] React Router används för navigering
+- [x] Formulären vid utcheckningen ska gå att automatiskt fyllas i
+- [x] Samtliga fält ska ha valideringsregler
 - [ ] Hemsidan ska vara fullt responsiv
-- [ ] Mockade produkter ska finnas i en egen fil och vara typade med ett TS interface
-- [ ] Projektet skall läggas upp på Netlify eller liknande tjänst.
+- [x] Mockade produkter ska finnas i en egen fil och vara typade med ett TS interface
+- [x] Projektet skall läggas upp på Netlify eller liknande tjänst.
 ### Krav för väl godkänt:
 - [ ] Alla punkter för godkänt är uppfyllda
 - [ ] Det finns en admin-sida där man kan ändra, lägga till eller ta bort produkter på sidan
