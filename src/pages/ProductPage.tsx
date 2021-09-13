@@ -35,11 +35,12 @@ const useStyles = makeStyles((theme: Theme) =>
         }, justifyCenter: {
             justifyContent: 'center'
         }, imgSize: {
-            maxWidth: '30rem',
-            minWidth: '320px'
+            maxHeight: '480px'
+           
+            
         }, flexWrap: {
             flexWrap: 'wrap'
         }, flexGrowOne: {
-            flexGrow: 0.5
+            
         }
     }));
