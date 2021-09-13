@@ -18,7 +18,7 @@ mm.
 - [x] React Router används för navigering
 - [x] Formulären vid utcheckningen ska gå att automatiskt fyllas i
 - [x] Samtliga fält ska ha valideringsregler
-- [ ] Hemsidan ska vara fullt responsiv
+- [x] Hemsidan ska vara fullt responsiv
 - [x] Mockade produkter ska finnas i en egen fil och vara typade med ett TS interface
 - [x] Projektet skall läggas upp på Netlify eller liknande tjänst.
 ### Krav för väl godkänt:
