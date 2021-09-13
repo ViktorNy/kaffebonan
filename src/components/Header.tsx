@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
             background: '#8A624A'
         },
         logoStyle: {
-            height: '3rem',
+            height: '2.5rem',
             alignItems: 'center'
         },
         cartStyling: {

@@ -43,7 +43,7 @@ export const ProductCard: FC<Props> = (props: Props) => {
                     </Link>
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
                         <Typography className={`${classes.fontFamily} ${classes.fontWeight}`}>
-                            Pris: {props.product.price}kr
+                            {props.product.price}kr
                         </Typography>
                         <Button onClick={handleClick}>
                             <AddShoppingCartIcon />
@@ -56,7 +56,7 @@ export const ProductCard: FC<Props> = (props: Props) => {
                     </div>
                 </CardContent>
             </Card>
-        </Grid>
+        </Grid >
     )
 }
 

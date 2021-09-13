@@ -32,7 +32,7 @@ export const CheckOutTable = () => {
             </TableHead>
             <TableBody>
                 {shoppingCart.map((shoppingItem) => (
-                    <TableRow>
+                    <TableRow key={shoppingItem.product.id}>
                         <TableCell className={`${classes.imageStyle}`}>
                             <CardMedia className={`${classes.media}`} image={shoppingItem.product.imageUrl} />
                         </TableCell>
@@ -69,7 +69,7 @@ export const CheckOutTable = () => {
                     </TableCell>
                 </TableRow>
             </TableBody>
-        </Table>
+        </Table >
     )
 }
 
@@ -107,13 +107,12 @@ const useStyles = makeStyles((theme: Theme) =>
             lineClamp: 2,
             overflow: 'hidden',
             textOverflow: 'ellipsis',
-            height: '2.5rem',
-            boxOrient: 'vertical',
+            boxOrient: 'vertical'
         },
         cellPadding: {
             padding: '5px'
         },
         priceStyle: {
             padding: '0'
-        },
+        }
     }));
