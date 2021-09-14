@@ -1,6 +1,5 @@
 import { createStyles, makeStyles } from '@material-ui/styles'
 import { Theme } from 'pretty-format'
-import React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { ProductInformation } from '../components/ProductInformation'
 import { productArray } from '../data'
@@ -24,7 +23,6 @@ export const ProductPage = (props: Props) => {
         )
     }
 }
-
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

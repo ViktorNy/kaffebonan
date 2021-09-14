@@ -18,4 +18,3 @@ const rootStyle: CSSProperties = {
     flexDirection: 'column',
     alignItems: 'center'
 }
-

@@ -73,8 +73,6 @@ export const CheckOutTable = () => {
     )
 }
 
-
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         MainStyle: {
