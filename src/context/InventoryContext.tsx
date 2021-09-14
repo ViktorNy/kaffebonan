@@ -3,10 +3,12 @@ import { Product, productArray } from "../data";
 
 interface ContextValue {
   inventoryArray: Product[];
+  removeProduct: (product:Product) => void;
 }
 
 export const InventoryContext = createContext<ContextValue>({
   inventoryArray: [],
+  removeProduct: () => {}
 });
 
 const InventoryProvider: FC = (props) => {
@@ -25,12 +27,25 @@ const InventoryProvider: FC = (props) => {
     }
   });
 
+  const removeProduct = (product: Product) => {
+        const index = inventoryArray.findIndex(p => p.id === product.id);
+        if (index >= 0) {
+            inventoryArray.splice(index, 1);
+            setInventoryArray([...inventoryArray]);
+        }
+        else{throw new Error('Something went wrong')};
+  }
+
   useEffect(() => {
     localStorage.setItem('inventory', JSON.stringify(inventoryArray));
   }, [inventoryArray]);
 
   return (
-    <InventoryContext.Provider value={{ inventoryArray }}>
+    <InventoryContext.Provider 
+    value={{ 
+        inventoryArray,
+        removeProduct
+         }}>
       {props.children}
     </InventoryContext.Provider>
   );
