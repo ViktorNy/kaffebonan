@@ -26,7 +26,7 @@ export const productArray: Product[] = [
 
     { id: '1', name: 'Bru Gold', info: 'Har du hört historien om när vi besteg Mount Tibidabo i Spanien? Inte? Den är för lång för att berätta här, men köp Bru Gold så får du samma feeling vi hade när vi var där.', price: 199, imageUrl:  (img1) },
     { id: '2', name: 'Drop Coffee', info: 'Många tror att Jesus inte drack kaffe. Vi har egentligen ingen aning om han gjorde det eller inte, men drack han något så var det definitivt detta.', price: 399, imageUrl: (img2) },
-    { id: '3', name: 'Bones coffee', info: 'Finns det ens någon skillnad på kaffebönor?", säger din amatör till kompis som inte har koll på kaffe alls. Köp dessa bönor så kan du visa alla dina ignoranta vänner hur fel de har.', price: 49, imageUrl: (img3) },
+    { id: '3', name: 'Bones coffee', info: '"Finns det ens någon skillnad på kaffebönor?", säger din amatör till kompis som inte har koll på kaffe alls. Köp dessa bönor så kan du visa alla dina ignoranta vänner hur fel de har.', price: 49, imageUrl: (img3) },
     { id: '4', name: 'Grey Coffee', info: 'Gillar du svart kaffe? Då har du kommit rätt, allt vårt kaffe är svart (förutom om du häller i mjölk det vill säga, men vem gör det?). Grey Coffee är dessutom det svartaste vi har. Som ett svart hål i din kaffekopp, det absorberar allt ljus.', price: 179, imageUrl: (img4) },
     { id: '5', name: 'Lavazza Espresso', info: 'Bakiskur? Snarare bakisKUL med det här kaffet. KÖP!', price: 99, imageUrl: (img5)},
     { id: '6', name: 'Espresso Bar', info: 'Har du problem att sova? Ta bara två koppar av detta koffeinrika kaffe så kommer du sova som ett barn (på sockerush).', price: 249, imageUrl: (img6) },
