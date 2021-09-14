@@ -6,6 +6,6 @@ Projektet använder sig av React för strukturen och Material UI för de visuell
 Vi har delat upp vårt projekt enligt React-standard i komponenter, som i sin tur kan återanvändas på flera av hemsidans delar.
 
 ### Startkommandon
-Kör:
+Skriv och kör i terminalen:
 
 ```npm install -y```
