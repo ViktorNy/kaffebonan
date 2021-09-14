@@ -7,4 +7,5 @@ Vi har delat upp vårt projekt enligt React-standard i komponenter, som i sin tu
 
 ### Startkommandon
 Kör
+
 ```npm install -y```
