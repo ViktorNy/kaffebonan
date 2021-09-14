@@ -42,7 +42,7 @@ export const ProductCard: FC<Props> = (props: Props) => {
                         </Typography>
                     </Link>
                     <div className={`${classes.flex} ${classes.spaceBetween}`}>
-                        <Typography className={`${classes.fontFamily} ${classes.fontWeight}`}>
+                        <Typography className={`${classes.fontFamily} ${classes.fontWeight} ${classes.flexCenter}`}>
                             {props.product.price}kr
                         </Typography>
                         <Button onClick={handleClick}>
@@ -92,5 +92,10 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         fontWeight: {
             fontWeight: 'bold'
+        },
+        flexCenter: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
         }
     }));

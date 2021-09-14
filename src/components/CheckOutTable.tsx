@@ -34,7 +34,7 @@ export const CheckOutTable = () => {
                 {shoppingCart.map((shoppingItem) => (
                     <TableRow key={shoppingItem.product.id}>
                         <TableCell className={`${classes.imageStyle}`}>
-                            <CardMedia className={`${classes.media}`} image={shoppingItem.product.imageUrl} />
+                            <div className={`${classes.maxHeight}`}><CardMedia className={`${classes.media}`} image={shoppingItem.product.imageUrl} /></div>
                         </TableCell>
                         <TableCell className={classes.cellPadding}>
                             <div className={`${classes.nameStyle}`}>{shoppingItem.product.name}</div>
@@ -82,7 +82,8 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         TableStyle: {
             fontWeight: 'bold',
-            padding: '5px'
+            padding: '5px',
+            textAlign: 'left'
         },
         media: {
             paddingTop: '100%', // 16:9
@@ -112,5 +113,9 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         priceStyle: {
             padding: '0'
+        },
+        maxHeight: {
+            maxWidth: '3rem',
+            paddingLeft: '30%'
         }
     }));
