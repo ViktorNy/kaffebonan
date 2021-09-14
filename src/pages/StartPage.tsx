@@ -1,10 +1,13 @@
 import Grid from '@material-ui/core/Grid';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { useContext } from 'react';
 import { HeaderBar } from '../components/Header';
 import { ProductCard } from '../components/ProductCard';
-import { productArray } from '../data';
+import { InventoryContext } from '../context/InventoryContext';
 
 const StartPage = () => {
+
+    
 
     return (
         <div>
@@ -15,12 +18,13 @@ const StartPage = () => {
 }
 
 const ProductGrid = () => {
+    const {inventoryArray} = useContext(InventoryContext);
     const classes = useStyles();
 
     return (
         <div className={`${classes.root} ${classes.contentPadding}`}>
             <Grid container spacing={3} className={`${classes.contentMargin}`}>
-                {productArray.map((product) => (
+                {inventoryArray.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
             </Grid>
