@@ -16,6 +16,14 @@ const defaultValues = {
     city: ''
 };
 
+const regEx = {
+    email: /^(?!.*\.{2})[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+    onlyLetters: /^[\p{L}' ][\p{L}' -]*[\p{L}' ]$/u,
+    lettersAndNumbers: /^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u,
+    zipCode: /(?:^|\D)(\d{5})(?!\d)/g,
+    phoneNumber: /^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/,
+};
+
 const errorMessages = {
     emailErrorMsg: '',
     PhoneNumberErrorMsg: '',
@@ -51,32 +59,32 @@ const OrderForm = () => {
 
         switch (type) {
             case 'email':
-                reg = new RegExp(/^(?!.*\.{2})[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i).test(value);
+                reg = new RegExp(regEx.email).test(value);
                 reg ? setErrorMessage({ ...errorMessage, emailErrorMsg: '' }) : setErrorMessage({ ...errorMessage, emailErrorMsg: 'Inte en epostadress' });
                 break;
             case 'firstName':
-                reg = new RegExp(/^[\p{L}' ][\p{L}' -]*[\p{L}' ]$/u).test(value);
+                reg = new RegExp(regEx.onlyLetters).test(value);
                 reg ? setErrorMessage({ ...errorMessage, firstNameErrorMsg: '' }) : setErrorMessage({ ...errorMessage, firstNameErrorMsg: 'Skriv endast bokstäver' });
                 break;
             case 'lastName':
-                reg = new RegExp(/^[\p{L}' ][\p{L}' -]*[\p{L}' ]$/u).test(value);
+                reg = new RegExp(regEx.onlyLetters).test(value);
                 reg ? setErrorMessage({ ...errorMessage, lastNameErrorMsg: '' }) : setErrorMessage({ ...errorMessage, lastNameErrorMsg: 'Skriv endast bokstäver' });
                 break;
             case 'address':
-                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u).test(value);
+                reg = new RegExp(regEx.lettersAndNumbers).test(value);
                 reg ? setErrorMessage({ ...errorMessage, addressErrorMsg: '' }) : setErrorMessage({ ...errorMessage, addressErrorMsg: 'Ogiltiga symboler' });
                 break;
             case 'city':
-                reg = new RegExp(/^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u).test(value);
+                reg = new RegExp(regEx.lettersAndNumbers).test(value);
                 reg ? setErrorMessage({ ...errorMessage, cityErrorMsg: '' }) : setErrorMessage({ ...errorMessage, cityErrorMsg: 'Skriv endast bokstäver' });
                 break;
             case 'zipCode':
-                reg = new RegExp(/(?:^|\D)(\d{5})(?!\d)/g).test(value);
+                reg = new RegExp(regEx.zipCode).test(value);
                 reg ? setErrorMessage({ ...errorMessage, zipCodeErrorMsg: '' }) : setErrorMessage({ ...errorMessage, zipCodeErrorMsg: 'Postnummer måste vara 5 siffror' });
                 break;
             case 'phone number':
-                reg = new RegExp(/^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/).test(value);
-                reg ? setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: '' }) : setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: 'Invalid mobile phone number' });
+                reg = new RegExp(regEx.phoneNumber).test(value);
+                reg ? setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: '' }) : setErrorMessage({ ...errorMessage, PhoneNumberErrorMsg: 'Ogiltigt telefonnummer' });
                 break;
 
             default:
