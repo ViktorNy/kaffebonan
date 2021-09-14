@@ -1,4 +1,5 @@
 import { Route, Switch } from 'react-router'
+import { AdminPage } from '../pages/AdminPage'
 import { CheckoutPage } from '../pages/CheckoutPage'
 import { ConfirmationPage } from '../pages/ConfirmationPage'
 import { ProductPage } from '../pages/ProductPage'
@@ -14,6 +15,7 @@ export const Layout = () => {
                 <Route exact path='/product/:id' component={ProductPage} />
                 <Route exact path='/checkout' component={CheckoutPage} />
                 <Route exact path='/confirmation' component={ConfirmationPage} />
+                <Route exact path='/admin' component={AdminPage} />
             </Switch>
         </div>
     )   
