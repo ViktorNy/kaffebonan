@@ -20,7 +20,7 @@ const ProductGrid = () => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root + ' ' + classes.contentPadding}>
+        <div className={`${classes.root} ${classes.contentPadding}`}>
             <Grid container spacing={3} className={`${classes.contentMargin}`}>
                 {productArray.map((product) => (
                     <ProductCard key={product.id} product={product} />

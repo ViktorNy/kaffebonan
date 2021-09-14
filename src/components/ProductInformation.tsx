@@ -29,9 +29,9 @@ export const ProductInformation = ({ product }: Props) => {
     const { addToCart } = useContext(CartContext);
 
     return (
-        <div className={classes.flex + ' ' + classes.columnDirection + ' ' + classes.flexGrowOne + ' ' + classes.textSize + ' ' + classes.textMargin}>
+        <div className={`${classes.flex} ${classes.columnDirection} ${classes.flexGrowOne} ${classes.textSize} ${classes.textMargin}`}>
             <h1 className={classes.fontFamily}>{product?.name}</h1>
-            <div className={classes.flex + ' ' + classes.spaceBetween}>
+            <div className={`${classes.flex} ${classes.spaceBetween}`}>
                 <h2 className={classes.fontFamily}>{product.price} kr</h2>
                 <Button color='inherit' onClick={handleClick}>
                     <AddShoppingCartIcon />
