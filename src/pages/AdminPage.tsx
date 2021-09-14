@@ -1,14 +1,29 @@
 import {Table, TableHead, TableRow, TableCell, TableBody, CardMedia, Button, Theme, createStyles} from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { InventoryContext } from "../context/InventoryContext";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { ProductDialog } from "../components/ProductDialog";
 
 export const AdminPage = () => {
   const { inventoryArray, removeProduct } = useContext(InventoryContext);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const classes = useStyles();
 
+  const handleClose = () => {
+    setDialogOpen(false);
+  };
+
+  const handleOpen = () => {
+      setDialogOpen(true);
+  }
+
   return (
+      <div className={classes.MainStyle}>
+          <Button onClick={handleOpen}>
+                Lägg till ny produkt
+          </Button>
+        <ProductDialog open={dialogOpen} closedDialog={handleClose}/>
     <Table className={classes.MainStyle}>
       <TableHead>
         <TableRow>
@@ -50,6 +65,7 @@ export const AdminPage = () => {
         ))}
       </TableBody>
     </Table>
+    </div>
   );
 };
 

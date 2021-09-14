@@ -7,8 +7,6 @@ import { InventoryContext } from '../context/InventoryContext';
 
 const StartPage = () => {
 
-    
-
     return (
         <div>
             <HeaderBar />
