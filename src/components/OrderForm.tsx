@@ -21,7 +21,7 @@ const regEx = {
     onlyLetters: /^[\p{L}' ][\p{L}' -]*[\p{L}' ]$/u,
     lettersAndNumbers: /^[\p{L}'][ \p{L}'-]*[0-9\p{L} ]+$/u,
     zipCode: /(?:^|\D)(\d{5})(?!\d)/g,
-    phoneNumber: /^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/,
+    phoneNumber: /^\s*(?:\+?(\d{1,3}))?[ (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/,
 };
 
 const errorMessages = {
