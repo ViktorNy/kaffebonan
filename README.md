@@ -9,3 +9,7 @@ Vi har delat upp vårt projekt enligt React-standard i komponenter, som i sin tu
 Skriv och kör i terminalen:
 
 ```npm install -y```
+
+För att starta projektet, efter installation:
+
+```npm start```
