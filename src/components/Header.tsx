@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Button, createStyles, makeStyles, Theme, Badge } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PersonIcon from '@material-ui/icons/Person';
 import { Link } from 'react-router-dom';
 import logo from '../images/headerlogo.png';
 import { CartContext, ShoppingItem } from '../context/CartContext';
@@ -18,10 +19,18 @@ export const HeaderBar = () => {
                     <div className={`${classes.title}`}>
                         <Link to='/'><img src={logo} alt='' className={`${classes.logoStyle}`} /></Link>
                     </div>
+                    <Button color="primary" variant="contained" >
+                        <Link to='/admin'>
+                            <Badge className={classes.iconStyling} color='secondary'>
+                                <PersonIcon className={classes.iconStyling} />
+                                ADMIN
+                            </Badge>
+                        </Link>
+                    </Button>
                     <Button color='inherit'>
                         <Link to='/checkout'>
-                            <Badge className={classes.cartStyling} badgeContent={numberOfItemsInCart} color='secondary'>
-                                <ShoppingCartIcon className={classes.cartStyling} />
+                            <Badge className={classes.iconStyling} badgeContent={numberOfItemsInCart} color='secondary'>
+                                <ShoppingCartIcon className={classes.iconStyling} />
                             </Badge>
                         </Link>
                     </Button>
@@ -50,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) =>
             height: '2.5rem',
             alignItems: 'center'
         },
-        cartStyling: {
+        iconStyling: {
             color: 'white'
         }
     }));
