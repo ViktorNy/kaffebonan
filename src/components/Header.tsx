@@ -19,15 +19,14 @@ export const HeaderBar = () => {
                     <div className={`${classes.title}`}>
                         <Link to='/'><img src={logo} alt='' className={`${classes.logoStyle}`} /></Link>
                     </div>
-                    <Button color="primary" variant="contained" >
+                    <Button color="inherit">
                         <Link to='/admin'>
                             <Badge className={classes.iconStyling} color='secondary'>
-                                <PersonIcon className={classes.iconStyling} />
                                 ADMIN
                             </Badge>
                         </Link>
                     </Button>
-                    <Button color='inherit'>
+                    <Button color='inherit' className={classes.buttonStyling}>
                         <Link to='/checkout'>
                             <Badge className={classes.iconStyling} badgeContent={numberOfItemsInCart} color='secondary'>
                                 <ShoppingCartIcon className={classes.iconStyling} />
@@ -60,6 +59,12 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center'
         },
         iconStyling: {
-            color: 'white'
+            color: 'white',
+        },
+        buttonStyling: {
+            padding: '0',
+            width: '0.5rem',
+            minWidth: '10%',
+            maxWidth: '20px'
         }
     }));
