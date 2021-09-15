@@ -19,11 +19,13 @@ import { v4 as uuidv4 } from "uuid";
 interface Props {
   open: boolean;
   closedDialog: () => void;
+  product?: Product;
 }
 
-export const ProductDialog: FC<Props> = ({ open, closedDialog }) => {
+export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
   const { addProduct } = useContext(InventoryContext);
-  const [newProduct, setNewProduct] = useState<Partial<Product>>({} );
+  const [newProduct, setNewProduct] = useState<Partial<Product>>(product ? product: {});
+  console.log(newProduct);
   const classes = useStyles();
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();

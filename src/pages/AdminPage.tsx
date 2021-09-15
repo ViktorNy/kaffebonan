@@ -15,10 +15,12 @@ import { useContext, useState } from "react";
 import { InventoryContext } from "../context/InventoryContext";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { ProductDialog } from "../components/ProductDialog";
+import { Product } from "../data";
 
 export const AdminPage = () => {
   const { inventoryArray, removeProduct } = useContext(InventoryContext);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [chosenProduct, setChosenProduct] = useState<Partial<Product>>({});
   const classes = useStyles();
 
   const handleClose = () => {
@@ -36,11 +38,11 @@ export const AdminPage = () => {
           Lägg till ny produkt
         </Button>
       </div>
-      <ProductDialog open={dialogOpen} closedDialog={handleClose} />
+      <ProductDialog open={dialogOpen} closedDialog={handleClose} product={chosenProduct as Product} />
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell
+            <TableCell 
               className={`${classes.TableStyle} ${classes.imageStyle}`}
             ></TableCell>
             <TableCell className={classes.TableStyle}>Namn</TableCell>
@@ -51,7 +53,7 @@ export const AdminPage = () => {
         <TableBody>
           {inventoryArray.map((product) => (
             <TableRow key={product.id}>
-              <TableCell className={`${classes.imageStyle}`}>
+              <TableCell  className={`${classes.imageStyle}`}>
                 <div className={`${classes.maxHeight}`}>
                   <CardMedia
                     className={`${classes.media}`}
@@ -59,7 +61,11 @@ export const AdminPage = () => {
                   />
                 </div>
               </TableCell>
-              <TableCell className={classes.cellPadding}>
+              <TableCell onClick={() => {
+                    handleOpen();
+                    setChosenProduct( product );
+                  }} 
+                  className={`${classes.cellPadding} ${classes.pointer}`}>
                 <div className={`${classes.nameStyle}`}>{product.name}</div>
               </TableCell>
               <TableCell className={classes.cellPadding}>
@@ -128,10 +134,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     centerDiv: {
       display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      alignContent: "center",
+      justifyContent: "center"
     },
+    pointer: {
+        cursor: "pointer",
+    }
   })
 );
