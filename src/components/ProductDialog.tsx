@@ -23,12 +23,12 @@ interface Props {
 
 export const ProductDialog: FC<Props> = ({ open, closedDialog }) => {
   const { addProduct } = useContext(InventoryContext);
-  const [newProduct, setNewProduct] = useState<Product>({} as Product);
+  const [newProduct, setNewProduct] = useState<Partial<Product>>({} );
   const classes = useStyles();
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-
-    addProduct(newProduct);
+    addProduct(newProduct as Product);
+    closedDialog();
   };
 
   return (
@@ -38,12 +38,12 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog }) => {
         onClose={closedDialog}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="form-dialog-title" className={classes.center}>Lägg till ny produkt</DialogTitle>
 
         <form onSubmit={handleSubmit}>
           <div className={classes.formMargin}>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12}>
                 <TextField
                   id="Name"
                   fullWidth
@@ -56,7 +56,7 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog }) => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12}>
                 <TextField
                   id="Price"
                   fullWidth
@@ -73,7 +73,7 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog }) => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12}>
                 <TextField
                   id="Info"
                   fullWidth
@@ -86,7 +86,7 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog }) => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid item xs={12}>
                 <TextField
                   id="imageUrl"
                   fullWidth
@@ -106,7 +106,7 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog }) => {
                   type="submit"
                   onClick={() => {
                     setNewProduct({ ...newProduct, id: uuidv4() });
-                    closedDialog();
+                    
                   }}
                 >
                   Spara
@@ -131,7 +131,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
     },
     formMargin: {
-      margin: "10%",
+      margin: "5%",
       maxWidth: "1000px",
     },
     outerFormMargin: {

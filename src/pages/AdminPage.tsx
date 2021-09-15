@@ -1,4 +1,15 @@
-import {Table, TableHead, TableRow, TableCell, TableBody, CardMedia, Button, Theme, createStyles} from "@material-ui/core";
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  CardMedia,
+  Button,
+  Theme,
+  createStyles,
+  Container,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { useContext, useState } from "react";
 import { InventoryContext } from "../context/InventoryContext";
@@ -15,60 +26,65 @@ export const AdminPage = () => {
   };
 
   const handleOpen = () => {
-      setDialogOpen(true);
-  }
+    setDialogOpen(true);
+  };
 
   return (
-      <div className={classes.MainStyle}>
-          <Button onClick={handleOpen}>
-                Lägg till ny produkt
-          </Button>
-        <ProductDialog open={dialogOpen} closedDialog={handleClose}/>
-    <Table className={classes.MainStyle}>
-      <TableHead>
-        <TableRow>
-          <TableCell
-            className={`${classes.TableStyle} ${classes.imageStyle}`}
-          ></TableCell>
-          <TableCell className={classes.TableStyle}>Namn</TableCell>
-          <TableCell className={classes.TableStyle}>Pris</TableCell>
-          <TableCell className={classes.TableStyle}>Ta bort</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {inventoryArray.map((product) => (
-          <TableRow key={product.id}>
-            <TableCell className={`${classes.imageStyle}`}>
-              <div className={`${classes.maxHeight}`}>
-                <CardMedia
-                  className={`${classes.media}`}
-                  image={product.imageUrl}
-                />
-              </div>
-            </TableCell>
-            <TableCell className={classes.cellPadding}>
-              <div className={`${classes.nameStyle}`}>{product.name}</div>
-            </TableCell>
-            <TableCell className={classes.cellPadding}>
-              {product.price}
-            </TableCell>
-            <TableCell className={classes.cellPadding}>
-              <Button onClick={() => removeProduct(product)} className={classes.arrowButtonStyle}>
-                <DeleteForeverIcon />
-              </Button>
-            </TableCell>
+    <Container className={classes.MainStyle}>
+      <div className={classes.centerDiv}>
+        <Button onClick={handleOpen} variant="contained" color="primary">
+          Lägg till ny produkt
+        </Button>
+      </div>
+      <ProductDialog open={dialogOpen} closedDialog={handleClose} />
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell
+              className={`${classes.TableStyle} ${classes.imageStyle}`}
+            ></TableCell>
+            <TableCell className={classes.TableStyle}>Namn</TableCell>
+            <TableCell className={classes.TableStyle}>Pris</TableCell>
+            <TableCell className={classes.TableStyle}>Ta bort</TableCell>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-    </div>
+        </TableHead>
+        <TableBody>
+          {inventoryArray.map((product) => (
+            <TableRow key={product.id}>
+              <TableCell className={`${classes.imageStyle}`}>
+                <div className={`${classes.maxHeight}`}>
+                  <CardMedia
+                    className={`${classes.media}`}
+                    image={product.imageUrl}
+                  />
+                </div>
+              </TableCell>
+              <TableCell className={classes.cellPadding}>
+                <div className={`${classes.nameStyle}`}>{product.name}</div>
+              </TableCell>
+              <TableCell className={classes.cellPadding}>
+                {product.price}
+              </TableCell>
+              <TableCell className={classes.cellPadding}>
+                <Button
+                  onClick={() => removeProduct(product)}
+                  className={classes.arrowButtonStyle}
+                >
+                  <DeleteForeverIcon />
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Container>
   );
 };
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     MainStyle: {
-      marginTop: "4rem",
+      marginTop: "5rem",
       maxWidth: "62.5rem",
       padding: "5px",
     },
@@ -109,6 +125,13 @@ const useStyles = makeStyles((theme: Theme) =>
     maxHeight: {
       maxWidth: "3rem",
       paddingLeft: "30%",
+    },
+    centerDiv: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      alignContent: "center",
     },
   })
 );
