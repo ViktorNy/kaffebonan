@@ -4,11 +4,13 @@ import { Product, productArray } from "../data";
 interface ContextValue {
   inventoryArray: Product[];
   removeProduct: (product:Product) => void;
+    addProduct: (product:Product) => void;
 }
 
 export const InventoryContext = createContext<ContextValue>({
   inventoryArray: [],
-  removeProduct: () => {}
+  removeProduct: () => {},
+    addProduct: () => {}
 });
 
 const InventoryProvider: FC = (props) => {
@@ -36,6 +38,11 @@ const InventoryProvider: FC = (props) => {
         else{throw new Error('Something went wrong')};
   }
 
+  const addProduct = (product: Product) => {
+    inventoryArray.push(product);
+    setInventoryArray([...inventoryArray]);
+  }
+
   useEffect(() => {
     localStorage.setItem('inventory', JSON.stringify(inventoryArray));
   }, [inventoryArray]);
@@ -44,7 +51,8 @@ const InventoryProvider: FC = (props) => {
     <InventoryContext.Provider 
     value={{ 
         inventoryArray,
-        removeProduct
+        removeProduct,
+        addProduct
          }}>
       {props.children}
     </InventoryContext.Provider>

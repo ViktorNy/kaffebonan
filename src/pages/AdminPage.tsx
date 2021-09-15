@@ -32,7 +32,6 @@ export const AdminPage = () => {
           ></TableCell>
           <TableCell className={classes.TableStyle}>Namn</TableCell>
           <TableCell className={classes.TableStyle}>Pris</TableCell>
-          <TableCell className={classes.TableStyle}>Info</TableCell>
           <TableCell className={classes.TableStyle}>Ta bort</TableCell>
         </TableRow>
       </TableHead>
@@ -52,9 +51,6 @@ export const AdminPage = () => {
             </TableCell>
             <TableCell className={classes.cellPadding}>
               {product.price}
-            </TableCell>
-            <TableCell className={classes.cellPadding}>
-              {product.info}
             </TableCell>
             <TableCell className={classes.cellPadding}>
               <Button onClick={() => removeProduct(product)} className={classes.arrowButtonStyle}>

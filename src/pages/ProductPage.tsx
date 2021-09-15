@@ -1,14 +1,18 @@
 import { createStyles, makeStyles } from '@material-ui/styles'
 import { Theme } from 'pretty-format'
+import { useContext } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { ProductInformation } from '../components/ProductInformation'
+import { InventoryContext } from '../context/InventoryContext'
 import { productArray } from '../data'
 
 interface Props extends RouteComponentProps<{ id: string }> { }
 
 export const ProductPage = (props: Props) => {
 
-    const product = productArray.find((p) => p.id === props.match.params.id)
+    const {inventoryArray} = useContext(InventoryContext);
+
+    const product = inventoryArray.find((p) => p.id === props.match.params.id)
 
     const classes = useStyles();
 
