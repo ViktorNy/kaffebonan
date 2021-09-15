@@ -3,14 +3,14 @@ import { Product, productArray } from "../data";
 
 interface ContextValue {
   inventoryArray: Product[];
-  removeProduct: (product:Product) => void;
-    addProduct: (product:Product) => void;
+  removeProduct: (product: Product) => void;
+  addProduct: (product: Product) => void;
 }
 
 export const InventoryContext = createContext<ContextValue>({
   inventoryArray: [],
-  removeProduct: () => {},
-    addProduct: () => {}
+  removeProduct: () => { },
+  addProduct: () => { }
 });
 
 const InventoryProvider: FC = (props) => {
@@ -30,16 +30,24 @@ const InventoryProvider: FC = (props) => {
   });
 
   const removeProduct = (product: Product) => {
-        const index = inventoryArray.findIndex(p => p.id === product.id);
-        if (index >= 0) {
-            inventoryArray.splice(index, 1);
-            setInventoryArray([...inventoryArray]);
-        }
-        else{throw new Error('Something went wrong')};
+    const index = inventoryArray.findIndex(p => p.id === product.id);
+    if (index >= 0) {
+      inventoryArray.splice(index, 1);
+      setInventoryArray([...inventoryArray]);
+    }
+    else { throw new Error('Something went wrong') };
   }
 
-  const addProduct = (product: Product) => {
-    inventoryArray.push(product);
+  const handleProduct = (product: Product) => {
+    const index = inventoryArray.findIndex((p) => p.id === product.id);
+
+    if (index >= 0) {
+      inventoryArray.splice(index, 1, product)
+    }
+    else {
+      inventoryArray.push(product);
+    }
+
     setInventoryArray([...inventoryArray]);
   }
 
@@ -48,12 +56,12 @@ const InventoryProvider: FC = (props) => {
   }, [inventoryArray]);
 
   return (
-    <InventoryContext.Provider 
-    value={{ 
+    <InventoryContext.Provider
+      value={{
         inventoryArray,
         removeProduct,
-        addProduct
-         }}>
+        addProduct: handleProduct
+      }}>
       {props.children}
     </InventoryContext.Provider>
   );

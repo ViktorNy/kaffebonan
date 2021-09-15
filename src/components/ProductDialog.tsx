@@ -11,7 +11,7 @@ import {
   createStyles,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { FC, FormEvent, useContext, useState } from "react";
+import { FC, FormEvent, useContext, useEffect, useState } from "react";
 import { InventoryContext } from "../context/InventoryContext";
 import { Product } from "../data";
 import { v4 as uuidv4 } from "uuid";
@@ -24,14 +24,21 @@ interface Props {
 
 export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
   const { addProduct } = useContext(InventoryContext);
-  const [newProduct, setNewProduct] = useState<Partial<Product>>(product ? product: {});
-  console.log(newProduct);
+  
+  const [newProduct, setNewProduct] = useState<Partial<Product>>({});
+
   const classes = useStyles();
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     addProduct(newProduct as Product);
     closedDialog();
   };
+
+    useEffect(() => {
+        if(product){
+            setNewProduct(product);
+        }
+    }, [product]);
 
   return (
     <div>
@@ -107,8 +114,7 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
                   color="primary"
                   type="submit"
                   onClick={() => {
-                    setNewProduct({ ...newProduct, id: uuidv4() });
-                    
+                    if(!newProduct.id) setNewProduct({ ...newProduct, id: uuidv4() });                    
                   }}
                 >
                   Spara
