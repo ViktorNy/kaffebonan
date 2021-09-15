@@ -34,7 +34,10 @@ export const AdminPage = () => {
   return (
     <Container className={classes.MainStyle}>
       <div className={classes.centerDiv}>
-        <Button onClick={handleOpen} variant="contained" color="primary">
+              <Button onClick={() => {
+                  handleOpen();
+                  setChosenProduct({});
+              }}  variant="contained" color="primary">
           Lägg till ny produkt
         </Button>
       </div>
