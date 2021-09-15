@@ -1,11 +1,7 @@
 import {
   Button,
   Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
   TextField,
-  DialogActions,
   Grid,
   Theme,
   createStyles,
@@ -22,23 +18,64 @@ interface Props {
   product?: Product;
 }
 
+const regEx = {
+  onlyLetters: /^[0-9\p{L}'][ \p{L}',.:-]*[0-9\p{L} ]+$/u,
+  onlyNumbers: /^[0-9/d]/,
+  onlyUrl: /^\S*$/
+}
+
+const errorMessages = {
+  letterErrorMsg: '',
+  numberErrorMsg: '',
+  infoErrorMsg: '',
+  urlErrorMsg: ''
+}
+
 export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
   const { addProduct } = useContext(InventoryContext);
-  
+  const [errorMessage, setErrorMessage] = useState(errorMessages);
   const [newProduct, setNewProduct] = useState<Partial<Product>>({});
 
   const classes = useStyles();
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    addProduct(newProduct as Product);
-    closedDialog();
+    if (Object.values(errorMessage).every(value => value === '')) {
+      addProduct(newProduct as Product);
+      closedDialog();
+    }
   };
 
-    useEffect(() => {
-        if(product){
-            setNewProduct(product);
-        }
-    }, [product]);
+  const validateField = (value: string, type: string) => {
+    let reg;
+
+    switch (type) {
+      case 'name':
+        reg = new RegExp(regEx.onlyLetters).test(value);
+        reg ? setErrorMessage({ ...errorMessage, letterErrorMsg: '' }) : setErrorMessage({ ...errorMessage, letterErrorMsg: 'Ange ett giltigt namn' });
+        break;
+      case 'price':
+        reg = new RegExp(regEx.onlyNumbers).test(value);
+        reg ? setErrorMessage({ ...errorMessage, numberErrorMsg: '' }) : setErrorMessage({ ...errorMessage, numberErrorMsg: 'Ange ett giltigt pris' });
+        break;
+      case 'info':
+        reg = new RegExp(regEx.onlyLetters).test(value);
+        reg ? setErrorMessage({ ...errorMessage, infoErrorMsg: '' }) : setErrorMessage({ ...errorMessage, infoErrorMsg: 'Ange information i ett giltigt format' });
+        break;
+      case 'url':
+        reg = new RegExp(regEx.onlyUrl).test(value);
+        reg ? setErrorMessage({ ...errorMessage, urlErrorMsg: '' }) : setErrorMessage({ ...errorMessage, urlErrorMsg: 'Ange en giltig url' });
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    if (product) {
+      setNewProduct(product);
+    }
+  }, [product]);
 
   return (
     <div>
@@ -47,8 +84,6 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
         onClose={closedDialog}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title" className={classes.center}>Lägg till ny produkt</DialogTitle>
-
         <form onSubmit={handleSubmit}>
           <div className={classes.formMargin}>
             <Grid container spacing={3}>
@@ -61,8 +96,11 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
                   required
                   value={newProduct.name}
                   onChange={(e) => {
+                    validateField(e.target.value, 'name');
                     setNewProduct({ ...newProduct, name: e.target.value });
                   }}
+                  error={errorMessage.letterErrorMsg !== ''}
+                  helperText={errorMessage.letterErrorMsg}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -75,11 +113,14 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
                   type="number"
                   value={newProduct.price}
                   onChange={(e) => {
+                    validateField(e.target.value, 'price');
                     setNewProduct({
                       ...newProduct,
                       price: Number(e.target.value),
                     });
                   }}
+                  error={errorMessage.numberErrorMsg !== ''}
+                  helperText={errorMessage.numberErrorMsg}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -91,8 +132,11 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
                   required
                   value={newProduct.info}
                   onChange={(e) => {
+                    validateField(e.target.value, 'info');
                     setNewProduct({ ...newProduct, info: e.target.value });
                   }}
+                  error={errorMessage.infoErrorMsg !== ''}
+                  helperText={errorMessage.infoErrorMsg}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -104,8 +148,11 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
                   required
                   value={newProduct.imageUrl}
                   onChange={(e) => {
+                    validateField(e.target.value, 'url');
                     setNewProduct({ ...newProduct, imageUrl: e.target.value });
                   }}
+                  error={errorMessage.urlErrorMsg !== ''}
+                  helperText={errorMessage.urlErrorMsg}
                 />
               </Grid>
               <Grid item xs={12} className={classes.center}>
@@ -114,7 +161,7 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
                   color="primary"
                   type="submit"
                   onClick={() => {
-                    if(!newProduct.id) setNewProduct({ ...newProduct, id: uuidv4() });                    
+                    if (!newProduct.id) setNewProduct({ ...newProduct, id: uuidv4() });
                   }}
                 >
                   Spara
@@ -130,9 +177,6 @@ export const ProductDialog: FC<Props> = ({ open, closedDialog, product }) => {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    contentMargin: {
-      marginTop: "2rem",
-    },
     center: {
       display: "flex",
       justifyContent: "center",
@@ -141,16 +185,6 @@ const useStyles = makeStyles((theme: Theme) =>
     formMargin: {
       margin: "5%",
       maxWidth: "1000px",
-    },
-    outerFormMargin: {
-      margin: "25%",
-      maxWidth: "200px",
-    },
-    maxwidth: {
-      maxWidth: "75%",
-    },
-    Grid: {
-      display: "inline-grid",
-    },
+    }
   })
 );

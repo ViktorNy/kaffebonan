@@ -1,6 +1,5 @@
 import { AppBar, Toolbar, Button, createStyles, makeStyles, Theme, Badge } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PersonIcon from '@material-ui/icons/Person';
 import { Link } from 'react-router-dom';
 import logo from '../images/headerlogo.png';
 import { CartContext, ShoppingItem } from '../context/CartContext';
@@ -63,8 +62,5 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         buttonStyling: {
             padding: '0',
-            width: '0.5rem',
-            minWidth: '10%',
-            maxWidth: '20px'
         }
     }));

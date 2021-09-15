@@ -4,13 +4,12 @@ import { useContext } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { ProductInformation } from '../components/ProductInformation'
 import { InventoryContext } from '../context/InventoryContext'
-import { productArray } from '../data'
 
 interface Props extends RouteComponentProps<{ id: string }> { }
 
 export const ProductPage = (props: Props) => {
 
-    const {inventoryArray} = useContext(InventoryContext);
+    const { inventoryArray } = useContext(InventoryContext);
 
     const product = inventoryArray.find((p) => p.id === props.match.params.id)
 
@@ -21,7 +20,7 @@ export const ProductPage = (props: Props) => {
     } else {
         return (
             <div className={`${classes.contentMargin} ${classes.justifyCenter} ${classes.flex} ${classes.flexWrap} ${classes.imgPadding}`}>
-                <img src={product.imageUrl} alt='' className={classes.imgSize} />
+                <img src={product.imageUrl} alt='' className={`${classes.imgSize}`} />
                 <ProductInformation product={product} />
             </div>
         )

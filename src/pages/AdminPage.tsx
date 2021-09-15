@@ -34,10 +34,10 @@ export const AdminPage = () => {
   return (
     <Container className={classes.MainStyle}>
       <div className={classes.centerDiv}>
-              <Button onClick={() => {
-                  handleOpen();
-                  setChosenProduct({});
-              }}  variant="contained" color="primary">
+        <Button onClick={() => {
+          handleOpen();
+          setChosenProduct({});
+        }} variant="contained" color="primary">
           Lägg till ny produkt
         </Button>
       </div>
@@ -45,7 +45,7 @@ export const AdminPage = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell 
+            <TableCell
               className={`${classes.TableStyle} ${classes.imageStyle}`}
             ></TableCell>
             <TableCell className={classes.TableStyle}>Namn</TableCell>
@@ -56,7 +56,7 @@ export const AdminPage = () => {
         <TableBody>
           {inventoryArray.map((product) => (
             <TableRow key={product.id}>
-              <TableCell  className={`${classes.imageStyle}`}>
+              <TableCell className={`${classes.imageStyle}`}>
                 <div className={`${classes.maxHeight}`}>
                   <CardMedia
                     className={`${classes.media}`}
@@ -65,10 +65,10 @@ export const AdminPage = () => {
                 </div>
               </TableCell>
               <TableCell onClick={() => {
-                    handleOpen();
-                    setChosenProduct( product );
-                  }} 
-                  className={`${classes.cellPadding} ${classes.pointer}`}>
+                handleOpen();
+                setChosenProduct(product);
+              }}
+                className={`${classes.cellPadding} ${classes.pointer}`}>
                 <div className={`${classes.nameStyle}`}>{product.name}</div>
               </TableCell>
               <TableCell className={classes.cellPadding}>
@@ -77,7 +77,7 @@ export const AdminPage = () => {
               <TableCell className={classes.cellPadding}>
                 <Button
                   onClick={() => removeProduct(product)}
-                  className={classes.arrowButtonStyle}
+                  className={classes.deleteButtonStyle}
                 >
                   <DeleteForeverIcon />
                 </Button>
@@ -105,10 +105,7 @@ const useStyles = makeStyles((theme: Theme) =>
     media: {
       paddingTop: "100%", // 16:9
     },
-    amountArrowStyle: {
-      whiteSpace: "nowrap",
-    },
-    arrowButtonStyle: {
+    deleteButtonStyle: {
       padding: "0",
       whiteSpace: "nowrap",
       minWidth: "20px",
@@ -128,9 +125,6 @@ const useStyles = makeStyles((theme: Theme) =>
     cellPadding: {
       padding: "5px",
     },
-    priceStyle: {
-      padding: "0",
-    },
     maxHeight: {
       maxWidth: "3rem",
       paddingLeft: "30%",
@@ -140,7 +134,7 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "center"
     },
     pointer: {
-        cursor: "pointer",
+      cursor: "pointer",
     }
   })
 );
