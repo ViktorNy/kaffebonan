@@ -18,10 +18,17 @@ export const HeaderBar = () => {
                     <div className={`${classes.title}`}>
                         <Link to='/'><img src={logo} alt='' className={`${classes.logoStyle}`} /></Link>
                     </div>
-                    <Button color='inherit'>
+                    <Button color="inherit">
+                        <Link to='/admin'>
+                            <Badge className={classes.iconStyling} color='secondary'>
+                                ADMIN
+                            </Badge>
+                        </Link>
+                    </Button>
+                    <Button color='inherit' className={classes.buttonStyling}>
                         <Link to='/checkout'>
-                            <Badge className={classes.cartStyling} badgeContent={numberOfItemsInCart} color='secondary'>
-                                <ShoppingCartIcon className={classes.cartStyling} />
+                            <Badge className={classes.iconStyling} badgeContent={numberOfItemsInCart} color='secondary'>
+                                <ShoppingCartIcon className={classes.iconStyling} />
                             </Badge>
                         </Link>
                     </Button>
@@ -50,7 +57,10 @@ const useStyles = makeStyles((theme: Theme) =>
             height: '2.5rem',
             alignItems: 'center'
         },
-        cartStyling: {
-            color: 'white'
+        iconStyling: {
+            color: 'white',
+        },
+        buttonStyling: {
+            padding: '0',
         }
     }));

@@ -1,14 +1,17 @@
 import { createStyles, makeStyles } from '@material-ui/styles'
 import { Theme } from 'pretty-format'
+import { useContext } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { ProductInformation } from '../components/ProductInformation'
-import { productArray } from '../data'
+import { InventoryContext } from '../context/InventoryContext'
 
 interface Props extends RouteComponentProps<{ id: string }> { }
 
 export const ProductPage = (props: Props) => {
 
-    const product = productArray.find((p) => p.id === props.match.params.id)
+    const { inventoryArray } = useContext(InventoryContext);
+
+    const product = inventoryArray.find((p) => p.id === props.match.params.id)
 
     const classes = useStyles();
 
@@ -17,7 +20,7 @@ export const ProductPage = (props: Props) => {
     } else {
         return (
             <div className={`${classes.contentMargin} ${classes.justifyCenter} ${classes.flex} ${classes.flexWrap} ${classes.imgPadding}`}>
-                <img src={product.imageUrl} alt='' className={classes.imgSize} />
+                <img src={product.imageUrl} alt='' className={`${classes.imgSize}`} />
                 <ProductInformation product={product} />
             </div>
         )
