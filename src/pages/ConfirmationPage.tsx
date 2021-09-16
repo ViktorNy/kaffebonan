@@ -10,7 +10,7 @@ export const ConfirmationPage = () => {
     return (
         <div style={rootStyle}>
             <div><CheckCircleIcon /></div>
-            <div className={`${classes.contentMargin} ${classes.fontSize}`}>Tack för din beställning! Din order är på väg.</div>
+            <div className={`${classes.contentMargin} ${classes.fontStyle}`}>Tack för din beställning! Din order är på väg.</div>
             <Link to='/' className={classes.textdecoration}>
                 <Button className={`${classes.contentMargin} ${classes.buttonMargin}`} variant='contained' color='primary' type='submit'>
                     Till Startsidan
@@ -36,8 +36,9 @@ const useStyles = makeStyles((theme: Theme) =>
         textdecoration: {
             textDecoration: 'none'
         },
-        fontSize: {
-            fontweight: 'bold'
+        fontStyle: {
+            fontweight: 'bold',
+            fontFamily: 'sans-serif'
         },
         buttonMargin: {
             marginTop: '5rem'

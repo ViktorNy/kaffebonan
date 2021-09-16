@@ -19,7 +19,7 @@ export const HeaderBar = () => {
                         <Link to='/'><img src={logo} alt='' className={`${classes.logoStyle}`} /></Link>
                     </div>
                     <Button color="inherit">
-                        <Link to='/admin'>
+                        <Link to='/admin' className={classes.textDecNone}>
                             <Badge className={classes.iconStyling} color='secondary'>
                                 ADMIN
                             </Badge>
@@ -58,9 +58,12 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center'
         },
         iconStyling: {
-            color: 'white',
+            color: 'white'
         },
         buttonStyling: {
             padding: '0',
+        },
+        textDecNone: {
+            textDecoration: 'none'
         }
     }));
