@@ -58,10 +58,11 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'center'
         },
         iconStyling: {
-            color: 'white'
+            color: 'white',
         },
         buttonStyling: {
             padding: '0',
+            minWidth: '40px'
         },
         textDecNone: {
             textDecoration: 'none'

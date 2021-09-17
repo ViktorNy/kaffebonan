@@ -5,6 +5,7 @@ import { ConfirmationPage } from '../pages/ConfirmationPage'
 import { ProductPage } from '../pages/ProductPage'
 import StartPage from '../pages/StartPage'
 import { HeaderBar } from './Header'
+import NotFound from './NotFound'
 
 export const Layout = () => {
     return (
@@ -16,7 +17,8 @@ export const Layout = () => {
                 <Route exact path='/checkout' component={CheckoutPage} />
                 <Route exact path='/confirmation' component={ConfirmationPage} />
                 <Route exact path='/admin' component={AdminPage} />
+                <Route component={NotFound} />
             </Switch>
         </div>
-    )   
+    )
 }
