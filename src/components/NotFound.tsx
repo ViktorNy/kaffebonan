@@ -7,7 +7,7 @@ const NotFound = () => {
 
     return (
         <div className={classes.mainStyle}>
-            <h1 className={`${classes.contentMargin} ${classes.fontStyle}`}>404 - Not Found</h1>
+            <h1 className={`${classes.contentMargin} ${classes.fontStyle}`}>404 - Coffee not found</h1>
             <Link to='/' className={classes.textdecoration}>
                 <Button className={`${classes.contentMargin} ${classes.buttonMargin}`} variant='contained' color='primary' type='submit'>
                     Till Startsidan

@@ -17,7 +17,7 @@ export const ProductPage = (props: Props) => {
     const classes = useStyles();
 
     if (!product) {
-        return <h1 className={classes.contentMargin}><NotFound/></h1>
+        return <NotFound />
     } else {
         return (
             <div className={`${classes.contentMargin} ${classes.justifyCenter} ${classes.flex} ${classes.flexWrap} ${classes.imgPadding}`}>
