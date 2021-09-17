@@ -2,13 +2,13 @@ import { Button, createStyles, makeStyles, Theme } from '@material-ui/core';
 import { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 
-export const NotFound = () => {
+const NotFound = () => {
 
     const classes = useStyles();
 
     return (
         <div style={rootStyle}>
-            <div className={`${classes.contentMargin} ${classes.fontStyle}`}>404 Not Found</div>
+            <h1 className={`${classes.contentMargin} ${classes.fontStyle}`}>404 - Not Found</h1>
             <Link to='/' className={classes.textdecoration}>
                 <Button className={`${classes.contentMargin} ${classes.buttonMargin}`} variant='contained' color='primary' type='submit'>
                     Till Startsidan
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
             textDecoration: 'none'
         },
         fontStyle: {
-            fontweight: 'bolder',
+            fontweight: '900',
             fontFamily: 'sans-serif'
         },
         buttonMargin: {
