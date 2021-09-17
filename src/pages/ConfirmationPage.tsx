@@ -1,6 +1,5 @@
 import { Button, createStyles, makeStyles, Theme } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 
 export const ConfirmationPage = () => {
@@ -8,7 +7,7 @@ export const ConfirmationPage = () => {
     const classes = useStyles();
 
     return (
-        <div style={rootStyle}>
+        <div className={classes.mainStyle}>
             <div><CheckCircleIcon /></div>
             <div className={`${classes.contentMargin} ${classes.fontStyle}`}>Tack för din beställning! Din order är på väg.</div>
             <Link to='/' className={classes.textdecoration}>
@@ -20,16 +19,15 @@ export const ConfirmationPage = () => {
     )
 }
 
-const rootStyle: CSSProperties = {
-    marginTop: '10rem',
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center'
-}
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        mainStyle: {
+            marginTop: '10rem',
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center'
+        },
         contentMargin: {
             margin: '1rem'
         },

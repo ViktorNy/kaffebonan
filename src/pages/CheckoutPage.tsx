@@ -1,20 +1,24 @@
 
-import { CSSProperties } from 'react';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { CheckOutTable } from '../components/CheckOutTable';
 import OrderForm from '../components/OrderForm';
 
 export const CheckoutPage = () => {
+    const classes = useStyles();
     return (
-        <div style={rootStyle}>
+        <div className={classes.mainStyle}>
             <CheckOutTable />
             <OrderForm />
         </div>
     )
 }
 
-const rootStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center'
-}
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        mainStyle: {
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }
+    }));

@@ -1,5 +1,4 @@
 import { Button, createStyles, makeStyles, Theme } from '@material-ui/core';
-import { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 
 const NotFound = () => {
@@ -7,7 +6,7 @@ const NotFound = () => {
     const classes = useStyles();
 
     return (
-        <div style={rootStyle}>
+        <div className={classes.mainStyle}>
             <h1 className={`${classes.contentMargin} ${classes.fontStyle}`}>404 - Not Found</h1>
             <Link to='/' className={classes.textdecoration}>
                 <Button className={`${classes.contentMargin} ${classes.buttonMargin}`} variant='contained' color='primary' type='submit'>
@@ -20,16 +19,15 @@ const NotFound = () => {
 
 export default NotFound;
 
-const rootStyle: CSSProperties = {
-    marginTop: '10rem',
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignItems: 'center'
-}
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        mainStyle: {
+            marginTop: '10rem',
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center'
+        },
         contentMargin: {
             margin: '1rem'
         },
