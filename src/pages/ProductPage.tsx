@@ -2,6 +2,7 @@ import { createStyles, makeStyles } from '@material-ui/styles'
 import { Theme } from 'pretty-format'
 import { useContext } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
+import NotFound from '../components/NotFound'
 import { ProductInformation } from '../components/ProductInformation'
 import { InventoryContext } from '../context/InventoryContext'
 
@@ -16,7 +17,7 @@ export const ProductPage = (props: Props) => {
     const classes = useStyles();
 
     if (!product) {
-        return <h1 className={classes.contentMargin}>404 not found yo</h1>
+        return <h1 className={classes.contentMargin}><NotFound/></h1>
     } else {
         return (
             <div className={`${classes.contentMargin} ${classes.justifyCenter} ${classes.flex} ${classes.flexWrap} ${classes.imgPadding}`}>
