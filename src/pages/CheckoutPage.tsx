@@ -1,4 +1,3 @@
-
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { CheckOutTable } from '../components/CheckOutTable';
 import OrderForm from '../components/OrderForm';
